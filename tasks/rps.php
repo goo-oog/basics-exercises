@@ -11,17 +11,18 @@ do {
 } while (!$isInputValid);
 
 $computer = $options[rand(0, 2)];
+echo "You: ".$options[array_search($user,$options)+3]."  Computer: ".$options[array_search($computer,$options)+3];
 switch ([$user, $computer]) {
     case ['r', 's']:
     case ['p', 'r']:
     case ['s', 'p']:
-        echo "You: $user  Computer: $computer\nYou win!\n";
+        echo "\nYou win!\n";
         break;
     case ['r', 'p']:
     case ['p', 's']:
     case ['s', 'r']:
-        echo "You: $user  Computer: $computer\nComputer wins!\n";
+        echo "\nComputer wins!\n";
         break;
     default:
-        echo "You: $user  Computer: $computer\nTie!\n";
+        echo "\nTie!\n";
 }
