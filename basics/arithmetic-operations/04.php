@@ -8,9 +8,9 @@ echo "\nThis program calculates the factorial of an integer.\n";
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter a positive integer: ');
-    if (preg_match('/^[\d]+$/', $readine)) {
-        $number = $readine;
+    $readline = readline('Enter a positive integer: ');
+    if (preg_match('/^[\d]+$/', $readline)) {
+        $number = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';

@@ -16,9 +16,9 @@ function getInput(string $prompt): int
 {
     do {
         $isInputValid = false;
-        $readine = readline($prompt);
-        if (preg_match('/^[1-9]([\d]+)?$/', $readine)) {
-            $input = $readine;
+        $readline = readline($prompt);
+        if (preg_match('/^[1-9]([\d]+)?$/', $readline)) {
+            $input = $readline;
             $isInputValid = true;
         } else {
             echo 'Your input is not valid, try again! ';

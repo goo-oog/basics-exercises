@@ -26,9 +26,9 @@ $random = rand(1, 100);
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter a number: ');
-    if (preg_match('/^[\d]+$/', $readine) && $readine >= 1 && $readine <= 100) {
-        $guess = $readine;
+    $readline = readline('Enter a number: ');
+    if (preg_match('/^[\d]+$/', $readline) && $readline >= 1 && $readline <= 100) {
+        $guess = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';

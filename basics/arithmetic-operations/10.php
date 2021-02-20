@@ -31,9 +31,9 @@ function getInput(string $prompt, string $pattern = '/^[\d]+\.?([\d]+)?$/'): flo
 {
     do {
         $isInputValid = false;
-        $readine = readline($prompt);
-        if (preg_match($pattern, $readine)) {
-            $input = $readine;
+        $readline = readline($prompt);
+        if (preg_match($pattern, $readline)) {
+            $input = $readline;
             $isInputValid = true;
         } else {
             echo 'Your input is not valid, try again! ';

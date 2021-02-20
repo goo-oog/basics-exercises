@@ -13,9 +13,9 @@ echo "\nProgram calculates sum and average of all numbers between Min and Max (i
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter the Min number: ');
-    if (preg_match('/^([-]{1})?[\d]+$/', $readine)) {
-        $min = $readine;
+    $readline = readline('Enter the Min number: ');
+    if (preg_match('/^([-]{1})?[\d]+$/', $readline)) {
+        $min = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';
@@ -24,9 +24,9 @@ do {
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter the Max number that is bigger than the Min number: ');
-    if (preg_match('/^([-]{1})?[\d]+$/', $readine) && $readine > $min) {
-        $max = $readine;
+    $readline = readline('Enter the Max number that is bigger than the Min number: ');
+    if (preg_match('/^([-]{1})?[\d]+$/', $readline) && $readline > $min) {
+        $max = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';

@@ -8,9 +8,9 @@ echo "\nLet's check if the number is even or odd!\n";
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter a number: ');
-    if (preg_match('/^([-]{1})?[\d]+$/', $readine)) {
-        $number = $readine;
+    $readline = readline('Enter a number: ');
+    if (preg_match('/^([-]{1})?[\d]+$/', $readline)) {
+        $number = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';

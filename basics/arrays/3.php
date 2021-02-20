@@ -13,9 +13,9 @@ echo "\n";
 
 do {
     $isInputValid = false;
-    $readine = readline('Enter the 4-digit number to search for: ');
-    if (preg_match('/^[\d]{4}$/', $readine)) {
-        $number = $readine;
+    $readline = readline('Enter the 4-digit number to search for: ');
+    if (preg_match('/^[\d]{4}$/', $readline)) {
+        $number = $readline;
         $isInputValid = true;
     } else {
         echo 'Your input is not valid, try again! ';
