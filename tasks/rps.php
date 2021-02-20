@@ -3,9 +3,9 @@ $options = ['r', 'p', 's', 'rock', 'paper', 'scissors'];
 echo 'Enter rock(r), paper(p) or scissors(s):';
 do {
     $isInputValid = false;
-    $readine = readline('>> ');
-    if (ctype_alpha($readine) && in_array(strtolower($readine), $options)) {
-        $user = substr($readine, 0, 1);
+    $readline = readline('>> ');
+    if (ctype_alpha($readline) && in_array(strtolower($readline), $options)) {
+        $user = substr($readline, 0, 1);
         $isInputValid = true;
     }
 } while (!$isInputValid);
