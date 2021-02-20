@@ -1,5 +1,5 @@
 <?php
-//## Exercise #6
+//### Exercise #6
 //Write a program to play a word-guessing game like Hangman.
 //
 //- It must randomly choose a word from a list of words.

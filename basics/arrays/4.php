@@ -1,5 +1,5 @@
 <?php
-//## Exercise #4
+//### Exercise #4
 //
 //Write a program that creates an array of ten integers.
 //It should put ten random numbers from 1 to 100 in the array.

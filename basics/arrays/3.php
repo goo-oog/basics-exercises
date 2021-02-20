@@ -1,5 +1,5 @@
 <?php
-## Exercise #3
+### Exercise #3
 
 $numbers = [
     1789, 2035, 1899, 1456, 2013,
