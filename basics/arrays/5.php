@@ -1,28 +1,6 @@
 <?php
 //### Exercise #5
-//Code an interactive, two-player game of Tic-Tac-Toe. You'll use a two-dimensional array of chars.
-//
-//```
-//(...a game already in progress)
-//
-//	X   O
-//	O X X
-//	  X O
-//
-//'O', choose your location (row, column): 0 1
-//
-//	X O O
-//	O X X
-//	  X O
-//
-//'X', choose your location (row, column): 2 0
-//
-//	X O O
-//	O X X
-//	X X O
-//
-//The game is a tie.
-//```
+//Code an interactive, two-player game of Tic-Tac-Toe.
 
 function display_board(array $board): void
 {
@@ -34,11 +12,26 @@ function display_board(array $board): void
     echo "    3   $board[6] | $board[7] | $board[8] \n\n";
 }
 
-function userMove(array $board): int
+function chooseGameMode(): string
 {
     do {
         $isInputValid = false;
-        $readline = readline('Choose your location: ');
+        $readline = readline('Enter your choice: ');
+        if (preg_match('/^[cp]$/', $readline)) {
+            $mode = $readline;
+            $isInputValid = true;
+        } else {
+            echo 'Your input is not valid, try again! ';
+        }
+    } while (!$isInputValid);
+    return $mode;
+}
+
+function userMove(array $board, string $player): int
+{
+    do {
+        $isInputValid = false;
+        $readline = readline("$player your location: ");
 
         if (preg_match('/^[a-c]{1}[1-3]{1}$/', $readline)) {
             $location = ord($readline[0]) - 97 + 3 * ($readline[1] - 1);
@@ -62,12 +55,15 @@ function computerMove(array $board): int
     return $freeTiles[array_rand($freeTiles)];
 }
 
-function checkWinner(array $board): string
+function checkWinner(array $board, string $gameMode): string
 {
     $winLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     foreach ($winLines as $line) {
         if ($board[$line[0]] !== ' ' && $board[$line[0]] === $board[$line[1]] && $board[$line[1]] === $board[$line[2]]) {
-            return $board[$line[0]] === 'X' ? 'The win is yours!' : 'Computer wins!';
+            if ($gameMode === 'c') {
+                return $board[$line[0]] === 'X' ? 'The win is yours!' : 'Computer wins!';
+            }
+            return $board[$line[0]] === 'X' ? 'Player 1 wins!' : 'Player 2 wins!';
         }
     }
     return '-';
@@ -75,19 +71,32 @@ function checkWinner(array $board): string
 
 $board = array_fill(0, 9, ' ');
 $winner = '-';
-echo "\nTic - Tac - Toe\n";
-echo "Location must be entered as xy or yx (a1 or 1a)\n";
+echo "\nTic - Tac - Toe\n\n";
+echo "Please choose game mode.\n\nPlayer 1 against player 2 (p)\nPlayer against computer   (c)\n\n";
+$gameMode = chooseGameMode();
+echo "\nLocation must be entered as xy or yx (a1 or 1a)\n";
 display_board($board);
 while ($winner === '-') {
-    $board[userMove($board)] = "X";
-    $winner = checkWinner($board);
-    if ($winner === '-') {
-        $board[computerMove($board)] = "O";
+    if ($gameMode === 'p') {
+        $board[userMove($board, 'Player 1, choose')] = "X";
+    } else {
+        $board[userMove($board, 'Choose')] = "X";
     }
-    $winner = checkWinner($board);
+    display_board($board);
+    $winner = checkWinner($board, $gameMode);
     if (!in_array(' ', $board) && $winner === '-') {
         $winner = 'Tie!';
+        break;
     }
+    if ($winner === '-') {
+        if ($gameMode === 'p') {
+            $board[userMove($board, 'Player 2, choose')] = "O";
+
+        } else {
+            $board[computerMove($board)] = "O";
+        }
+    }
+    $winner = checkWinner($board, $gameMode);
     display_board($board);
 }
 echo $winner;
