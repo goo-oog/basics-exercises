@@ -79,10 +79,10 @@ echo "\nTic - Tac - Toe\n";
 echo "Location must be entered as xy or yx (a1 or 1a)\n";
 display_board($board);
 while ($winner === '-') {
-    $board[userMove($board)] = "\x1B[1;91mX\x1B[0m";
+    $board[userMove($board)] = "X";
     $winner = checkWinner($board);
     if ($winner === '-') {
-        $board[computerMove($board)] = "\x1B[1;92mO\x1B[0m";
+        $board[computerMove($board)] = "O";
     }
     $winner = checkWinner($board);
     if (!in_array(' ', $board) && $winner === '-') {
