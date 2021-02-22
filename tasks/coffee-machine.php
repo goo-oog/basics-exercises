@@ -30,8 +30,7 @@ $allMoney = 0;
 foreach ($wallet as $denomination => $count) {
     $allMoney += $denomination * $count;
 }
-echo "\x1B[1;44;37m 0 \x1B[0m  Iziet\t Nauda: \x1B[1;43;97m". $allMoney/100 ." €\x1B[0m\n\n";
-
+echo "\x1B[1;44;37m 0 \x1B[0m  Iziet\t Nauda: \x1B[1;43;97m" . $allMoney / 100 . " €\x1B[0m\n\n";
 
 
 while (!isset($isChoiceMade)) {
@@ -91,9 +90,9 @@ function printWallet(array $wallet): string
     }
     echo sprintf("\n\nJūsu makā ir šādas monētas par kopējo summu \x1B[1;43;97m %0.2f \x1B[0m € :\n\n", $allMoney);
     foreach ($wallet as $denomination => $count) {
-        if($count>0){
+        if ($count > 0) {
             echo "\x1B[1;43;97m $denomination \x1B[0m x $count   ";
-        }else{
+        } else {
             echo "\x1B[1;47;30m $denomination \x1B[0m x $count   ";
         }
 
