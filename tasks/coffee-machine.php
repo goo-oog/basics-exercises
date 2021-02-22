@@ -26,12 +26,13 @@ foreach ($drinks as $i => $drink) {
     echo "\x1B[1;44;37m " . ($i + 1) . " \x1B[0m  " . $drink->name . (strlen($drink->name) < 10 ? "\t\t" : "\t");
     echo sprintf("%0.2f €\n\n", $drink->price / 100);
 }
-echo "\x1B[1;44;37m 0 \x1B[0m  Iziet\n\n";
-
 $allMoney = 0;
 foreach ($wallet as $denomination => $count) {
     $allMoney += $denomination * $count;
 }
+echo "\x1B[1;44;37m 0 \x1B[0m  Iziet\t Nauda: \x1B[1;43;97m". $allMoney/100 ." €\x1B[0m\n\n";
+
+
 
 while (!isset($isChoiceMade)) {
     $choice = getInput('Lūdzu izvēlieties dzērienu: ', '/^[0-' . count($drinks) . ']$/', "Dzēriens ar šādu numuru neeksistē. Mēģiniet vēlreiz!\n");
@@ -63,7 +64,7 @@ if ($change > 0) {
 
 printChoice($drinks, $choice, $paid);
 printWallet($wallet);
-echo "\x1B[1;44;47m Paldies par pirkumu! \x1B[0m\n\n";
+echo "\x1B[1;97;47m Paldies par pirkumu! \x1B[0m\n\n";
 
 function printChoice(array $drinks, int $choice, int $paid): void
 {
@@ -88,14 +89,19 @@ function printWallet(array $wallet): string
     foreach ($wallet as $denomination => $count) {
         $allMoney += $denomination * $count / 100;
     }
-    echo sprintf("\n\nJūsu makā ir šādas monētas par kopējo summu \x1B[1;43;30m %0.2f \x1B[0m € :\n\n", $allMoney);
+    echo sprintf("\n\nJūsu makā ir šādas monētas par kopējo summu \x1B[1;43;97m %0.2f \x1B[0m € :\n\n", $allMoney);
     foreach ($wallet as $denomination => $count) {
-        echo "\x1B[1;43;30m $denomination \x1B[0m x $count   ";
+        if($count>0){
+            echo "\x1B[1;43;97m $denomination \x1B[0m x $count   ";
+        }else{
+            echo "\x1B[1;47;30m $denomination \x1B[0m x $count   ";
+        }
+
         if ($count > 0) {
             $pattern .= "$denomination|";
         }
     }
-    echo "\n\n\x1B[1;44;47m 0 \x1B[0m  Iziet\n\n";
+    echo "\n\n\x1B[1;97;47m 0 \x1B[0m  Iziet\n\n";
     return substr($pattern, 0, -1) . ')$/';
 }
 
