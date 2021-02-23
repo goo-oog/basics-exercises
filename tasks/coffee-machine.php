@@ -100,7 +100,7 @@ function printWallet(array $wallet): string
             $pattern .= "$denomination|";
         }
     }
-    echo "\n\n\x1B[1;97;47m 0 \x1B[0m  Iziet\n\n";
+    echo "\n\n\x1B[1;97;47m 0 \x1B[0m Iziet\n\n";
     return substr($pattern, 0, -1) . ')$/';
 }
 
