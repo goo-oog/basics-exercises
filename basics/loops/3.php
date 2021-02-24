@@ -21,11 +21,11 @@ $word1 = getInput('Enter the first word (1-28 characters long): ',
 $word2 = getInput("Enter the second word (1-" . (29 - strlen($word1)) . " characters long): ",
     '/^[a-zA-Z\d]{1,' . (29 - strlen($word1)) . '}$/');
 
-$dots = '';
+echo "\n$word1";
 for ($i = 1; $i <= 30 - strlen($word1) - strlen($word2); $i++) {
-    $dots .= '.';
+    echo '.';
 }
-echo "\n$word1$dots$word2\n";
+echo "$word2\n";
 
 function getInput(string $prompt, string $pattern): string
 {
