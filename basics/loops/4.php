@@ -6,7 +6,7 @@ echo "  |  FizzBuzz generator  |\n";
 echo "  +----------------------+\n\n";
 do {
     $readline = readline('Enter the max value: ');
-    if (preg_match('/^[\d]*$/', $readline)) {
+    if (ctype_digit($readline)) {
         $input = $readline;
     } else {
         echo "Your input is not valid. Try again!\n";

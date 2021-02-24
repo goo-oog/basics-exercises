@@ -30,7 +30,7 @@ function getInput(string $prompt): int
 {
     do {
         $readline = readline($prompt);
-        if (preg_match('/^-?[\d]*$/', $readline)) {
+        if (preg_match('/^-?[\d]*$/', $readline)) { //neredzu variantu nelietot regex'u: is_int un ctype_digit nestrādā ar negatīviem skaitļiem
             return $readline;
         } else {
             echo "Your input is not valid. Try again!\n";
