@@ -43,7 +43,6 @@ do {
                     $phoneNumber .= $stringToConvert[$i];
             }
         }
-
     } else {
         echo "Enter only letters and numbers. Try again!\n";
     }
