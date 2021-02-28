@@ -20,3 +20,46 @@ You may assume the input array is full of Movie instances. The returned array ma
     - with the title “Casino Royale”, the studio “Eon Productions” and the rating “PG­13”;
     - with the title “Glass”, the studio “Buena Vista International” and the rating “PG­13”;
     - with the title “Spider-Man: Into the Spider-Verse”, the studio “Columbia Pictures” and the rating “PG”.*/
+
+class Movie
+{
+    private string $title;
+    private string $studio;
+    private string $rating;
+
+    public function __construct(string $title, string $studio, string $rating)
+    {
+        $this->title = $title;
+        $this->studio = $studio;
+        $this->rating = $rating;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function getStudio(): string
+    {
+        return $this->studio;
+    }
+
+    public function getRating(): string
+    {
+        return $this->rating;
+    }
+}
+
+$movies = [
+    new Movie('Casino Royale', 'Eon Productions', 'PG13'),
+    new Movie('Glass', 'Buena Vista International', 'PG13'),
+    new Movie('Spider-Man: Into the Spider-Verse', 'Columbia Pictures', 'PG')
+];
+function getPG(array $movies): array
+{
+    return array_filter($movies, fn(Movie $movie) => $movie->getRating() == 'PG');
+}
+
+foreach (getPG($movies) as $movie) {
+    echo "Title: " . $movie->getTitle() . "  Studio: " . $movie->getStudio() . "  Rating: " . $movie->getRating() . PHP_EOL;
+}
