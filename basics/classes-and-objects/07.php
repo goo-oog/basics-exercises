@@ -155,10 +155,10 @@ $dogTest->addDog(new Dog('Sam', 'M')); //             Sparky     Lady      Rocky
 $dogTest->addDog(new Dog('Lady', 'F')); //                \       /\        /        |
 $dogTest->addDog(new Dog('Molly', 'F')); //                \     /  \      /         |
 $dogTest->addDog(new Dog('Coco', 'F')); //                  \   /    \    /         /
-$dogTest->setMother('Max', 'Lady');//                    Buster     Max         /
-$dogTest->setFather('Max', 'Rocky'); //                       \__________       /
+$dogTest->setMother('Max', 'Lady'); //                    Buster     Max         /
+$dogTest->setFather('Max', 'Rocky'); //                       \_________        /
 $dogTest->setMother('Coco', 'Molly'); //                                \     /
-$dogTest->setFather('Coco', 'Buster');  //                                \   /
+$dogTest->setFather('Coco', 'Buster'); //                                \   /
 $dogTest->setMother('Rocky', 'Molly'); //                                 Coco
 $dogTest->setFather('Rocky', 'Sam');
 $dogTest->setMother('Buster', 'Lady');
