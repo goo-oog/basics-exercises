@@ -20,7 +20,8 @@ A loop should then iterate once for every month, performing the following:
 
 Ask the user for the amount deposited into the account during the month.
 Use the class method to add this amount to the account balance.
-Ask the user for the amount withdrawn from the account during the month. Use the class method to subtract this amount from the account balance.
+Ask the user for the amount withdrawn from the account during the month.
+Use the class method to subtract this amount from the account balance.
 Use the class method to calculate the monthly interest.
 After the last iteration, the program should display the ending balance, the total amount of deposits, the total amount of withdrawals, and the total interest earned.
 
@@ -43,3 +44,84 @@ Total withdrawn: $5,777.00
 Interest earned: $29,977.72
 Ending balance: $42,030.72
 ```*/
+
+class SavingsAccount
+{
+    private int $balance = 0;
+    private float $annualInterestRate = 0.0;
+    private int $totalDeposited = 0;
+    private int $totalWithdrawn = 0;
+
+    public function __construct(int $startingBalance)
+    {
+        $this->balance = $startingBalance;
+    }
+
+    public function balance(): int
+    {
+        return $this->balance;
+    }
+
+    public function annualInterestRate(): float
+    {
+        return $this->annualInterestRate;
+    }
+
+    public function totalDeposited(): int
+    {
+        return $this->totalDeposited;
+    }
+
+    public function totalWithdrawn(): int
+    {
+        return $this->totalWithdrawn;
+    }
+
+    public function setAnnualInterestRate(float $rate): void
+    {
+        $this->annualInterestRate = $rate;
+    }
+
+    public function deposit(int $deposit): void
+    {
+        $this->balance += $deposit;
+        $this->totalDeposited += $deposit;
+    }
+
+    public function withdraw(int $withdrawal): void
+    {
+        $this->balance -= $withdrawal;
+        $this->totalWithdrawn += $withdrawal;
+    }
+
+    public function addMonthlyInterest(): void
+    {
+        $this->balance += round($this->balance * $this->annualInterestRate / 100 / 12);
+    }
+}
+
+do {
+    $startingBalance = 100 * filter_var(readline('Enter the starting balance: '), FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]]);
+} while (!$startingBalance);
+
+$account = new SavingsAccount($startingBalance);
+
+do {
+    $account->setAnnualInterestRate(filter_var(readline('Enter the annual interest rate: '), FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]]));
+} while (!$account->annualInterestRate());
+
+do {
+    $months = filter_var(readline('How long has the account been opened (in months): '), FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+} while (!$months);
+
+for ($month = 1; $month <= $months; $month++) {
+    $account->deposit(100 * filter_var(readline("Enter amount deposited for month: $month: "), FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]]));
+    $account->withdraw(100 * filter_var(readline("Enter amount withdrawn for month: $month: "), FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]]));
+    $account->addMonthlyInterest();
+}
+
+printf("\nStarting balance: %0.2f €\n", $startingBalance / 100);
+printf("Total deposited: %0.2f €\n", $account->totalDeposited() / 100);
+printf("Total withdrawn: %0.2f €\n", $account->totalWithdrawn() / 100);
+printf("Interest earned: %0.2f €\n", ($account->balance() - $startingBalance - $account->totalDeposited() + $account->totalWithdrawn()) / 100);
+printf("Ending balance: %0.2f €\n", $account->balance() / 100);
