@@ -1,14 +1,11 @@
 <?php
 /*## Exercise #8
-
 Design a SavingsAccount class that stores a savings account’s annual interest rate and balance.
-
 - The class constructor should accept the amount of the savings account’s starting balance.
 - The class should also have methods for:
     - subtracting the amount of a withdrawal
-- adding the amount of a deposit
-- adding the amount of monthly interest to the balance
-
+    - adding the amount of a deposit
+    - adding the amount of monthly interest to the balance
 The monthly interest rate is the annual interest rate divided by twelve.
 To add the monthly interest to the balance, multiply the monthly interest rate by the balance,
 and add the result to the balance.
@@ -26,7 +23,6 @@ Use the class method to calculate the monthly interest.
 After the last iteration, the program should display the ending balance, the total amount of deposits, the total amount of withdrawals, and the total interest earned.
 
 Output should be similar to this:
-
 ```
 How much money is in the account?: 10000
 Enter the annual interest rate:5

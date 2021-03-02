@@ -1,6 +1,5 @@
 <?php
 /*## Exercise #1
-
 Create a class Product that represents a product sold in a shop.
 A product has a price, amount and name.
 
@@ -14,14 +13,10 @@ Test your code by creating a class with main method and add three products there
 - "Logitech mouse", 70.00 EUR, 14 units
 - "iPhone 5s", 999.99 EUR, 3 units
 - "Epson EB-U05", 440.46 EUR, 1 units
-
 Print out information about them.
-
 Add new behaviour to the Product class:
-
 - possibility to change quantity
 - possibility to change price
-
 Reflect your changes in a working application.*/
 
 class Product
@@ -101,33 +96,33 @@ class Shop
 
 function userInputString(string $prompt): string
 {
-    do {
+    while (true) {
         $readline = readline($prompt);
         if (ctype_alnum($readline)) {
             return ucwords($readline);
         } else {
             echo "Your input is not valid. Try again!\n";
         }
-    } while (1);
+    }
 }
 
 function userInputNumber($prompt): float
 {
-    do {
+    while (true) {
         $readline = readline($prompt);
         if (is_numeric($readline) && $readline >= 0) {
             return $readline;
         } else {
             echo "Your input is not valid. Try again!\n";
         }
-    } while (1);
+    }
 }
 
 $shop = new Shop();
 $shop->addProduct(new Product("Mouse", 70.00, 14));
 $shop->addProduct(new Product("Phone", 999.99, 3));
 $shop->addProduct(new Product("Printer", 440.46, 1));
-do {
+while (true) {
     echo $shop->printProducts();
     switch (userInputString("Enter 'p' to change price, 'a' to change amount or 'e' to exit: ")) {
         case 'P':
@@ -141,4 +136,4 @@ do {
         default:
             echo "\n\x1B[1;91mEnter only one of these: 'p' or 'a' or 'e'\x1B[0m\n";
     }
-} while (1);
+}

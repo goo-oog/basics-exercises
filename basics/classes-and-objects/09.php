@@ -1,6 +1,5 @@
 <?php
 /*## Exercise #9
-
 Add the following method:
 ```php
 function show_user_name_and_balance() { }
@@ -34,7 +33,6 @@ class BankAccount
     public function showUserNameAndBalance(): string
     {
         return "$this->name, " . numfmt_format_currency($this->currencyFmt, $this->balance / 100, "USD");
-        //return sprintf("%s, %0.2f");
     }
 }
 

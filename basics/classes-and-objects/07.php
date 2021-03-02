@@ -1,8 +1,5 @@
 <?php
 /*## Exercise #7
-
-The questions in this exercise all deal with a class Dog that you have to program from scratch.
-
 - Create a class Dog. Dogs should have a name, and a sex.
 - Make a class DogTest with a Main method in which you create the following Dogs:
 - Max, male

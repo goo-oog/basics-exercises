@@ -99,6 +99,26 @@ class VideoStore
     }
 }
 
+class VideoStoreTest extends VideoStore
+{
+    public function __construct()
+    {
+        $this->addVideo("The Matrix");
+        $this->addVideo("Godfather II");
+        $this->addVideo("Star Wars Episode IV: A New Hope");
+        $this->rate("The Matrix", 5);
+        $this->rate("The Matrix", 3);
+        $this->rate("The Matrix", 2);
+        $this->rate("The Matrix", 4);
+        $this->rate("Godfather II", 5);
+        $this->rate("Godfather II", 3);
+        $this->rate("Godfather II", 3);
+        $this->rent("Star Wars Episode IV: A New Hope");
+        $this->return("Star Wars Episode IV: A New Hope");
+        $this->rent("Godfather II");
+    }
+}
+
 class Application
 {
     private object $store;
@@ -116,29 +136,31 @@ class Application
             echo "Choose 1 to fill video store\n";
             echo "Choose 2 to rent video (as user)\n";
             echo "Choose 3 to return video (as user)\n";
-            echo "Choose 4 to list inventory\n";
+            echo "Choose 4 to rate video (as user)\n";
+            echo "Choose 5 to list inventory\n";
             echo "Choose t to load the test movie database\n";
 
             $command = readline('>> ');
             switch ($command) {
                 case '0':
-                    echo "Bye!";
-                    die;
+                    exit("Bye!");
                 case '1':
-                    $this->add_movies();
+                    $this->addVideo();
                     break;
                 case '2':
-                    $this->rent_video();
+                    $this->rentVideo();
                     break;
                 case '3':
-                    $this->return_video();
+                    $this->returnVideo();
                     break;
                 case '4':
-                    $this->list_inventory();
-                    readline("Press 'enter' to continue...");
+                    $this->rateVideo();
+                    break;
+                case '5':
+                    $this->listVideos();
                     break;
                 case 't':
-                    $this->test();
+                    $this->loadTestDB();
                     break;
                 default:
                     echo "Enter 0 to 4 or t!\n";
@@ -147,7 +169,7 @@ class Application
         }
     }
 
-    private function add_movies(): void
+    private function addVideo(): void
     {
         $title = readline('To add movie, enter its title: ');
         if (strlen($title) > 0) {
@@ -155,7 +177,7 @@ class Application
         }
     }
 
-    private function rent_video(): void
+    private function rentVideo(): void
     {
         do {
             $title = readline('Title of movie to rent: ');
@@ -169,7 +191,7 @@ class Application
         } while (!isset($done));
     }
 
-    private function return_video(): void
+    private function returnVideo(): void
     {
         do {
             $title = readline('Title of movie to return: ');
@@ -183,28 +205,37 @@ class Application
         } while (!isset($done));
     }
 
-    private function list_inventory(): void
+    private function rateVideo(): void
     {
-        echo $this->store->listVideos();
+        do {
+            $title = readline('Title of movie to rate: ');
+            if (strlen($title) == 0) break;
+            foreach ($this->store->videos() as $i => $video) {
+                if ($video->title() === $title) {
+                    do {
+                        $rating = filter_var(readline("Enter 1-5 to rate '$title' or 0 to not: "), FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 5]]);
+                        if ($rating == 0) break;
+                    } while (!$rating);
+                    if ($rating == 0) break;
+                    $this->store->rate($title, $rating);
+                    $done = true;
+                }
+            }
+            if ($rating == 0) break;
+        } while (!isset($done));
     }
 
-    public function test(): void
+    private function listVideos(): void
     {
-        $testStore = new VideoStore();
-        $testStore->addVideo("The Matrix");
-        $testStore->addVideo("Godfather II");
-        $testStore->addVideo("Star Wars Episode IV: A New Hope");
-        $testStore->rate("The Matrix", 5);
-        $testStore->rate("The Matrix", 3);
-        $testStore->rate("The Matrix", 2);
-        $testStore->rate("The Matrix", 4);
-        $testStore->rate("Godfather II", 5);
-        $testStore->rate("Godfather II", 3);
-        $testStore->rate("Godfather II", 3);
-        $testStore->rent("Star Wars Episode IV: A New Hope");
-        $testStore->return("Star Wars Episode IV: A New Hope");
-        $testStore->rent("Godfather II");
-        $this->store = $testStore;
+        echo $this->store->listVideos();
+        readline("Press 'enter' to continue...");
+    }
+
+    private function loadTestDB(): void
+    {
+        $this->store = new VideoStoreTest();
+        echo "Test database loaded\n";
+        sleep(1);
     }
 }
 
