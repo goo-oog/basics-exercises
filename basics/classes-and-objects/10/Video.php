@@ -25,7 +25,6 @@ class Video
     public function getAvgRating(): string
     {
         if ($this->ratings->numOfRatings !== 0) {
-            var_dump($this->ratings->numOfRatings);
             return sprintf('%0.1f', $this->ratings->sumOfRatings / $this->ratings->numOfRatings);
         }
         return '———';
