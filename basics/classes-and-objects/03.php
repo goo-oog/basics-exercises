@@ -61,10 +61,10 @@ class Odometer
     public function drive1km(FuelGauge $fuelGauge): void
     {
         $this->mileage++;
-        if ($this->mileage == 1000000) {
+        if ($this->mileage === 1000000) {
             $this->mileage = 0;
         }
-        if ($this->mileage % 10 == 0) {
+        if ($this->mileage % 10 === 0) {
             $fuelGauge->burn1Liter();
         }
     }

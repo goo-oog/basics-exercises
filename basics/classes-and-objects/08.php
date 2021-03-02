@@ -43,7 +43,7 @@ Ending balance: $42,030.72
 
 class SavingsAccount
 {
-    private int $balance = 0;
+    private int $balance;
     private float $annualInterestRate = 0.0;
     private int $totalDeposited = 0;
     private int $totalWithdrawn = 0;

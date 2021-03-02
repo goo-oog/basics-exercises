@@ -55,7 +55,7 @@ $movies = [
 ];
 function getPG(array $movies): array
 {
-    return array_filter($movies, fn(Movie $movie) => $movie->getRating() == 'PG');
+    return array_filter($movies, fn(Movie $movie) => $movie->getRating() === 'PG');
 }
 
 foreach (getPG($movies) as $movie) {

@@ -53,7 +53,7 @@ class Application
     private function addVideo(): void
     {
         $title = readline('To add movie, enter its title: ');
-        if (strlen($title) > 0) {
+        if ($title !== '') {
             $this->store->addVideo($title);
         }
     }
@@ -62,7 +62,9 @@ class Application
     {
         do {
             $title = readline('Title of movie to rent: ');
-            if (strlen($title) == 0) break;
+            if ($title === '') {
+                break;
+            }
             foreach ($this->store->videos() as $i => $video) {
                 if ($video->title() === $title && $video->isAvailable()) {
                     $this->store->rent($title);
@@ -76,7 +78,9 @@ class Application
     {
         do {
             $title = readline('Title of movie to return: ');
-            if (strlen($title) == 0) break;
+            if ($title === '') {
+                break;
+            }
             foreach ($this->store->videos() as $i => $video) {
                 if ($video->title() === $title && $video->isAvailable() === false) {
                     $this->store->return($title);
@@ -90,19 +94,27 @@ class Application
     {
         do {
             $title = readline('Title of movie to rate: ');
-            if (strlen($title) == 0) break;
+            if ($title === '') {
+                break;
+            }
             foreach ($this->store->videos() as $i => $video) {
                 if ($video->title() === $title) {
                     do {
                         $rating = filter_var(readline("Enter 1-5 to rate '$title' or 0 to not: "), FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 5]]);
-                        if ($rating == 0) break;
+                        if ($rating === 0) {
+                            break;
+                        }
                     } while (!$rating);
-                    if ($rating == 0) break;
+                    if ($rating === 0) {
+                        break;
+                    }
                     $this->store->rate($title, $rating);
                     $done = true;
                 }
             }
-            if ($rating == 0) break;
+            if ($rating === 0) {
+                break;
+            }
         } while (!isset($done));
     }
 

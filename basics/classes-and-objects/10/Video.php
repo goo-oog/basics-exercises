@@ -9,7 +9,7 @@ class Video
     public function __construct(string $title)
     {
         $this->title = $title;
-        $this->ratings = (object)['numOfRatings' => null, 'sumOfRatings' => null];
+        $this->ratings = (object)['numOfRatings' => 0, 'sumOfRatings' => 0];
     }
 
     public function title(): string
@@ -24,7 +24,8 @@ class Video
 
     public function getAvgRating(): string
     {
-        if ($this->ratings->numOfRatings != 0) {
+        if ($this->ratings->numOfRatings !== 0) {
+            var_dump($this->ratings->numOfRatings);
             return sprintf('%0.1f', $this->ratings->sumOfRatings / $this->ratings->numOfRatings);
         }
         return '———';

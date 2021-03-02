@@ -15,7 +15,7 @@ class VideoStore
         foreach ($this->videos as $video) {
             $list .= $video->info();
         }
-        return strlen($list) > 0 ? $list . "\n" : "Empty store\n\n";
+        return $list !== '' ? $list . "\n" : "Empty store\n\n";
     }
 
     public function addVideo(string $title): void
@@ -26,21 +26,27 @@ class VideoStore
     public function rent(string $title): void
     {
         foreach ($this->videos as $i => $video) {
-            if ($video->title() === $title) $this->videos[$i]->rent();
+            if ($video->title() === $title) {
+                $this->videos[$i]->rent();
+            }
         }
     }
 
     public function return(string $title): void
     {
         foreach ($this->videos as $i => $video) {
-            if ($video->title() === $title) $this->videos[$i]->return();
+            if ($video->title() === $title) {
+                $this->videos[$i]->return();
+            }
         }
     }
 
     public function rate(string $title, int $rating): void
     {
         foreach ($this->videos as $i => $video) {
-            if ($video->title() === $title) $this->videos[$i]->rate($rating);
+            if ($video->title() === $title) {
+                $this->videos[$i]->rate($rating);
+            }
         }
     }
 }

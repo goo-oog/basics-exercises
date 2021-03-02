@@ -20,18 +20,12 @@ class Dog
 
     public function getMothersName(): string
     {
-        if (isset($this->mother->name)) {
-            return $this->mother->name;
-        }
-        return 'Unknown';
+        return $this->mother->name ?? 'Unknown';
     }
 
     public function getFathersName(): string
     {
-        if (isset($this->father->name)) {
-            return $this->father->name;
-        }
-        return 'Unknown';
+        return $this->father->name ?? 'Unknown';
     }
 
     public function setMother(Dog $mother): void
