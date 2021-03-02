@@ -24,7 +24,7 @@ class Application
             $command = readline('>> ');
             switch ($command) {
                 case '0':
-                    exit("Bye!");
+                    exit('Bye!');
                 case '1':
                     $this->addVideo();
                     break;

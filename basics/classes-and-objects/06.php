@@ -25,6 +25,6 @@ function calculate_prefer_citrus(int $energy_drinkers, float $prefer_citrus_drin
 
 $prefer_citrus = calculate_prefer_citrus($energy_drinkers, $prefer_citrus_drinks);
 
-echo "Total number of people surveyed: " . $surveyed . PHP_EOL;
+echo 'Total number of people surveyed: ' . $surveyed . PHP_EOL;
 echo "Approximately $energy_drinkers bought at least one energy drink" . PHP_EOL;
-echo "$prefer_citrus of those " . "prefer citrus flavored energy drinks" . PHP_EOL;
+echo "$prefer_citrus of those " . 'prefer citrus flavored energy drinks' . PHP_EOL;

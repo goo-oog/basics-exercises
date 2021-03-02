@@ -48,7 +48,7 @@ $dogTest->setFather('Buster', 'Sparky');
 echo "The father's name of Coco is: " . $dogTest->getFathersName('Coco') . "\n"; // Molly
 echo "The father's name of Sparky is: " . $dogTest->getFathersName('Sparky') . "\n"; // Unknown
 
-echo "Do Coco and Rocky have the same mother? ";
+echo 'Do Coco and Rocky have the same mother? ';
 echo $dogTest->hasSameMother('Coco', 'Rocky') ? "Yes\n" : "No\n"; // Yes
-echo "Do Lady and Max have the same mother? ";
+echo 'Do Lady and Max have the same mother? ';
 echo $dogTest->hasSameMother('Lady', 'Max') ? "Yes\n" : "No\n"; // No

@@ -32,7 +32,7 @@ class BankAccount
 
     public function showUserNameAndBalance(): string
     {
-        return "$this->name, " . numfmt_format_currency($this->currencyFmt, $this->balance / 100, "USD");
+        return "$this->name, " . numfmt_format_currency($this->currencyFmt, $this->balance / 100, 'USD');
     }
 }
 

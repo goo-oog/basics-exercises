@@ -59,5 +59,5 @@ function getPG(array $movies): array
 }
 
 foreach (getPG($movies) as $movie) {
-    echo "Title: " . $movie->getTitle() . "  Studio: " . $movie->getStudio() . "  Rating: " . $movie->getRating() . PHP_EOL;
+    echo 'Title: ' . $movie->getTitle() . '  Studio: ' . $movie->getStudio() . '  Rating: ' . $movie->getRating() . PHP_EOL;
 }
