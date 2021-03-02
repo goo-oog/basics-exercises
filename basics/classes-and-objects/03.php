@@ -4,6 +4,7 @@ For this exercise, you will design a set of classes that work together to simula
 and odometer. The classes you will design are the following:
 
 The FuelGauge Class: This class will simulate a fuel gauge. Its responsibilities are as follows:
+
  - To know the car’s current amount of fuel, in liters.
  - To report the car’s current amount of fuel, in liters.
  - To be able to increment the amount of fuel by 1 liter.
@@ -12,6 +13,7 @@ The FuelGauge Class: This class will simulate a fuel gauge. Its responsibilities
  if the amount of fuel is greater than 0 liters. This simulates burning fuel as the car runs.
 
 The Odometer Class: This class will simulate the car’s odometer. Its responsibilities are as follows:
+
  - To know the car’s current mileage.
  - To report the car’s current mileage.
  - To be able to increment the current mileage by 1 kilometer.
@@ -61,10 +63,10 @@ class Odometer
     public function drive1km(FuelGauge $fuelGauge): void
     {
         $this->mileage++;
-        if ($this->mileage === 1000000) {
+        if ($this->mileage == 1000000) {
             $this->mileage = 0;
         }
-        if ($this->mileage % 10 === 0) {
+        if ($this->mileage % 10 == 0) {
             $fuelGauge->burn1Liter();
         }
     }
