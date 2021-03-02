@@ -1,54 +1,114 @@
 <?php
-/*## Exercise #10
+//## Exercise #10
+// VIDEO STORE
 
-See [video-store.php](10.php)
+class Video
+{
+    private string $title;
+    private bool $isAvailable = true;
+    private object $ratings;
 
-The goal of this optional exercise is to design and implement a simple inventory control system
-for a small video rental store. Define least two classes: a class Video to model a video
-and a class VideoStore to model the actual store.
+    public function __construct(string $title)
+    {
+        $this->title = $title;
+        $this->ratings = (object)['numOfRatings' => null, 'sumOfRatings' => null];
+    }
 
-Assume that a Video may have the following state:
+    public function title(): string
+    {
+        return $this->title;
+    }
 
- - A title;
- - a flag to say whether it is checked out or not; and
- - an average user rating.
+    public function isAvailable(): bool
+    {
+        return $this->isAvailable;
+    }
 
-In addition, Video has the following behaviour:
+    public function getAvgRating(): string
+    {
+        if ($this->ratings->numOfRatings != 0) {
+            return sprintf('%0.1f', $this->ratings->sumOfRatings / $this->ratings->numOfRatings);
+        }
+        return '———';
+    }
 
- - being checked out;
- - being returned;
- - receiving a rating.
+    public function info(): string
+    {
+        return sprintf("$this->title   Rating: %s   Available: %s\n", $this->getAvgRating(), $this->isAvailable ? 'yes' : 'no');
+    }
 
-The VideoStore may have the state of videos in there currently.
-The VideoStore will have the following behaviour:
+    public function rent(): void
+    {
+        $this->isAvailable = false;
+    }
 
- - add a new video (by title) to the inventory;
- - check out a video (by title);
- - return a video to the store;
- - take a user's rating for a video;
- - list the whole inventory of videos in the store.
+    public function return(): void
+    {
+        $this->isAvailable = true;
+    }
 
-Finally, create a VideoStoreTest which will test the functionality of your other two classes.
-It should allow the following:
+    public function rate(int $rating): void
+    {
+        $this->ratings->numOfRatings++;
+        $this->ratings->sumOfRatings += $rating;
+    }
+}
 
- - Add 3 videos: "The Matrix", "Godfather II", "Star Wars Episode IV: A New Hope".
- - Give several ratings to each video.
- - Rent each video out once and return it.
- - List the inventory after "Godfather II" has been rented out out.
+class VideoStore
+{
+    private array $videos = [];
 
-Summary of design specs:
+    public function videos(): array
+    {
+        return $this->videos;
+    }
 
- - Store a library of videos identified by title.
- - Allow a video to indicate whether it is currently rented out.
- - Allow users to rate a video and display the percentage of users that liked the video.
- - Print the store's inventory, listing for each video:
-    - its title,
-    - the average rating,
-    - and whether it is checked out or on the shelves.*/
+    public function listVideos(): string
+    {
+        $list = '';
+        foreach ($this->videos as $video) {
+            $list .= $video->info();
+        }
+        return strlen($list) > 0 ? $list . "\n" : "Empty store\n\n";
+    }
+
+    public function addVideo(string $title): void
+    {
+        $this->videos[] = new Video($title);
+    }
+
+    public function rent(string $title): void
+    {
+        foreach ($this->videos as $i => $video) {
+            if ($video->title() === $title) $this->videos[$i]->rent();
+        }
+    }
+
+    public function return(string $title): void
+    {
+        foreach ($this->videos as $i => $video) {
+            if ($video->title() === $title) $this->videos[$i]->return();
+        }
+    }
+
+    public function rate(string $title, int $rating): void
+    {
+        foreach ($this->videos as $i => $video) {
+            if ($video->title() === $title) $this->videos[$i]->rate($rating);
+        }
+    }
+}
 
 class Application
 {
-    function run()
+    private object $store;
+
+    public function __construct()
+    {
+        $this->store = new VideoStore();
+    }
+
+    public function run(): void
     {
         while (true) {
             echo "Choose the operation you want to perform \n";
@@ -57,60 +117,95 @@ class Application
             echo "Choose 2 to rent video (as user)\n";
             echo "Choose 3 to return video (as user)\n";
             echo "Choose 4 to list inventory\n";
+            echo "Choose t to load the test movie database\n";
 
-            $command = (int)readline();
-
+            $command = readline('>> ');
             switch ($command) {
-                case 0:
+                case '0':
                     echo "Bye!";
                     die;
-                case 1:
+                case '1':
                     $this->add_movies();
                     break;
-                case 2:
+                case '2':
                     $this->rent_video();
                     break;
-                case 3:
+                case '3':
                     $this->return_video();
                     break;
-                case 4:
+                case '4':
                     $this->list_inventory();
+                    readline("Press 'enter' to continue...");
+                    break;
+                case 't':
+                    $this->test();
                     break;
                 default:
-                    echo "Sorry, I don't understand you..";
+                    echo "Enter 0 to 4 or t!\n";
+                    sleep(1);
             }
         }
     }
 
-    private function add_movies()
+    private function add_movies(): void
     {
-        //todo
+        $title = readline('To add movie, enter its title: ');
+        if (strlen($title) > 0) {
+            $this->store->addVideo($title);
+        }
     }
 
-    private function rent_video()
+    private function rent_video(): void
     {
-        //todo
+        do {
+            $title = readline('Title of movie to rent: ');
+            if (strlen($title) == 0) break;
+            foreach ($this->store->videos() as $i => $video) {
+                if ($video->title() === $title && $video->isAvailable()) {
+                    $this->store->rent($title);
+                    $done = true;
+                }
+            }
+        } while (!isset($done));
     }
 
-    private function return_video()
+    private function return_video(): void
     {
-        //todo
+        do {
+            $title = readline('Title of movie to return: ');
+            if (strlen($title) == 0) break;
+            foreach ($this->store->videos() as $i => $video) {
+                if ($video->title() === $title && $video->isAvailable() === false) {
+                    $this->store->return($title);
+                    $done = true;
+                }
+            }
+        } while (!isset($done));
     }
 
-    private function list_inventory()
+    private function list_inventory(): void
     {
-        //todo
+        echo $this->store->listVideos();
     }
-}
 
-class VideoStore
-{
-
-}
-
-class Video
-{
-
+    public function test(): void
+    {
+        $testStore = new VideoStore();
+        $testStore->addVideo("The Matrix");
+        $testStore->addVideo("Godfather II");
+        $testStore->addVideo("Star Wars Episode IV: A New Hope");
+        $testStore->rate("The Matrix", 5);
+        $testStore->rate("The Matrix", 3);
+        $testStore->rate("The Matrix", 2);
+        $testStore->rate("The Matrix", 4);
+        $testStore->rate("Godfather II", 5);
+        $testStore->rate("Godfather II", 3);
+        $testStore->rate("Godfather II", 3);
+        $testStore->rent("Star Wars Episode IV: A New Hope");
+        $testStore->return("Star Wars Episode IV: A New Hope");
+        $testStore->rent("Godfather II");
+        $this->store = $testStore;
+    }
 }
 
 $app = new Application();
