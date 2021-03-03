@@ -18,9 +18,9 @@ class VideoStore
         return $list !== '' ? $list . "\n" : "Empty store\n\n";
     }
 
-    public function addVideo(string $title): void
+    public function addVideo(Video $video): void
     {
-        $this->videos[] = new Video($title);
+        $this->videos[] = $video;
     }
 
     public function rent(string $title): void

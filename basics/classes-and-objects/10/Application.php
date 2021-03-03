@@ -54,7 +54,7 @@ class Application
     {
         $title = readline('To add movie, enter its title: ');
         if ($title !== '') {
-            $this->store->addVideo($title);
+            $this->store->addVideo(new Video($title));
         }
     }
 
