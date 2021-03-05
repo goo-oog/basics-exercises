@@ -18,14 +18,14 @@ class Dog
         return $this->name;
     }
 
-    public function getMothersName(): string
+    public function getMother(): Dog
     {
-        return $this->mother->name ?? 'Unknown';
+        return $this->mother ?? new Dog('Unknown', 'F');
     }
 
-    public function getFathersName(): string
+    public function getFather(): Dog
     {
-        return $this->father->name ?? 'Unknown';
+        return $this->father ?? new Dog('Unknown', 'M');
     }
 
     public function setMother(Dog $mother): void
