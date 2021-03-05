@@ -24,18 +24,13 @@ class Recipe
         return $this->name;
     }
 
-    private function ingredients(): array
-    {
-        return $this->ingredients;
-    }
-
     public function listIngredients(array $excludedIngredients = []): string
     {
         $listing = '';
-        foreach ($this->ingredients() as $i => $ingredient) {
+        foreach ($this->ingredients as $i => $ingredient) {
             if (!in_array($ingredient->name(), $excludedIngredients, true)) {
                 $listing .= $ingredient->name();
-                if ($i < (count($this->ingredients()) - 1)) {
+                if ($i < (count($this->ingredients) - 1)) {
                     $listing .= ', ';
                 }
             }
@@ -45,6 +40,6 @@ class Recipe
 
     public function isIngredientInRecipe(string $name): bool
     {
-        return in_array($name, array_column($this->ingredients(), 'name'), true);
+        return in_array($name, array_column($this->ingredients, 'name'), true);
     }
 }
