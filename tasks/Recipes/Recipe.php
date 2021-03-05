@@ -4,14 +4,19 @@ declare(strict_types=1);
 class Recipe
 {
     private string $name;
+    /**
+     * @var Ingredient[]
+     */
     private array $ingredients;
 
+    /**
+     * @param string $name
+     * @param string[] $ingredientNames
+     */
     public function __construct(string $name, array $ingredientNames)
     {
         $this->name = $name;
-        foreach ($ingredientNames as $ingredientName) {
-            $this->ingredients[] = new Ingredient($ingredientName);
-        }
+        $this->ingredients = array_map(static fn($ingredientName) => new Ingredient($ingredientName), $ingredientNames);
     }
 
     public function name(): string
@@ -19,7 +24,7 @@ class Recipe
         return $this->name;
     }
 
-    public function ingredients(): array
+    private function ingredients(): array
     {
         return $this->ingredients;
     }
@@ -40,11 +45,6 @@ class Recipe
 
     public function isIngredientInRecipe(string $name): bool
     {
-        foreach ($this->ingredients as $ingredient) {
-            if ($ingredient->name() === $name) {
-                return true;
-            }
-        }
-        return false;
+        return in_array($name, array_column($this->ingredients(), 'name'), true);
     }
 }

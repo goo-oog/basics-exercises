@@ -18,7 +18,6 @@ echo "\n════════╗\n";
 echo "Recipes:║\n";
 echo "════════╝\n";
 
-/* @var $recipe Recipe */
 foreach ($cookbook->recipes() as $recipe) {
     echo str_repeat(' ', 15 - strlen($recipe->name())) . $recipe->name() . ':  ';
     echo $recipe->listIngredients() . "\n";
@@ -31,17 +30,15 @@ echo "══════════════════════╝\n";
 
 $availableIngredients = new AvailableIngredients();
 $availableIngredients->query();
-
-
-echo "\n══════════════════════════════════╗\n";
-echo "With these ingredients I can make:║\n";
-echo "══════════════════════════════════╝\n";
-
 $excludedIngredients = $availableIngredients->names();
-/* @var $recipe Recipe */
+
+
+echo "\n════════════════════════════════════╗\n";
+echo "With these ingredients you can make:║\n";
+echo "════════════════════════════════════╝\n";
+
+$recipesPossible = 0;
 foreach ($cookbook->recipes() as $recipe) {
-    $listing = '';
-    /* @var $availableIngredient Ingredient */
     foreach ($availableIngredients->ingredients() as $availableIngredient) {
         if ($recipe->isIngredientInRecipe($availableIngredient->name())) {
             echo $recipe->name();
@@ -49,9 +46,13 @@ foreach ($cookbook->recipes() as $recipe) {
                 echo ":\n  - Missing ingredients:\n    - ";
                 echo $recipe->listIngredients($excludedIngredients) . "\n";
             } else {
-                echo ":\n  - You have all ingredients\n";
+                echo ":\n  - You have all the ingredients!\n";
             }
+            $recipesPossible++;
             break;
         }
     }
+}
+if ($recipesPossible === 0) {
+    echo "\nNone of recipes contain the ingredients available :-(\n";
 }
