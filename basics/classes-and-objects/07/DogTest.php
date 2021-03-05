@@ -34,27 +34,11 @@ class DogTest
 
     public function hasSameMother(string $dog1name, string $dog2name): bool
     {
-        foreach ($this->dogs as $i => $dog) {
-            if ($dog->getName() === $dog1name) {
-                $dog1 = $this->dogs[$i];
-            }
-            if ($dog->getName() === $dog2name) {
-                $dog2 = $this->dogs[$i];
-            }
-        }
-        return $dog1->getMother() === $dog2->getMother();
+        return $this->getDog($dog1name)->getMother() === $this->getDog($dog2name)->getMother();
     }
 
     public function hasSameFather(string $dog1name, string $dog2name): bool
     {
-        foreach ($this->dogs as $i => $dog) {
-            if ($dog->getName() === $dog1name) {
-                $dog1 = $this->dogs[$i];
-            }
-            if ($dog->getName() === $dog2name) {
-                $dog2 = $this->dogs[$i];
-            }
-        }
-        return $dog1->getFather() === $dog2->getFather();
+        return $this->getDog($dog1name)->getFather() === $this->getDog($dog2name)->getFather();
     }
 }
