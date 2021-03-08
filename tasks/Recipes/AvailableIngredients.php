@@ -6,25 +6,16 @@ class AvailableIngredients
     /**
      * @var Ingredient[]
      */
-    private array $ingredients;
+    private array $ingredients = [];
 
     public function ingredients(): array
     {
         return $this->ingredients;
     }
 
-    public function query(): void
+    public function addIngredient(Ingredient $ingredient)
     {
-        do {
-            $numOfIngredients = filter_var(readline('How much ingredients do you have? '),
-                FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
-        } while ($numOfIngredients === false);
-        if ($numOfIngredients === 0) {
-            exit("\nYou don't have any ingredients :-(\n");
-        }
-        for ($i = 1; $i <= $numOfIngredients; $i++) {
-            $this->ingredients[] = new Ingredient(readline("Enter the ingredient $i: "));
-        }
+        $this->ingredients[] = $ingredient;
     }
 
     /**
