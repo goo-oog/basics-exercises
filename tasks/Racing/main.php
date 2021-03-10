@@ -26,7 +26,6 @@ echo "\e[?25l"; // disable cursor
 do {
     $winsThisTick = 0;
     echo "\033[2J"; // clear screen
-    echo "\n\n\n\n";
     foreach ($racers->racers() as $racer) {
         if ($racer->winningPlace() === 0) {
             if (rand(0, 1000) < $racer->crashRate() * 1000) {
