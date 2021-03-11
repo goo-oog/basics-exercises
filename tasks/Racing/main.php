@@ -49,7 +49,7 @@ do {
             . str_repeat('═', $racer->position())
             . $racer->symbol()
             . str_repeat('═', $trackLength - $racer->position())
-            . ($racer->winningPlace() > 0 ? sprintf('  Time: % 5.2f s     Place:  %d', $racer->time(), $racer->winningPlace()) : '')
+            . ($racer->winningPlace() > 0 ? sprintf('  Time: %5.2f s     Place:  %d', $racer->time(), $racer->winningPlace()) : '')
             . ($racer->winningPlace() < 0 ? '  CRASHED' : '')
             . "\n\n";
     }
