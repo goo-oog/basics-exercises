@@ -13,13 +13,15 @@ require_once 'RacerCollection.php';
 $trackLength = 80;
 
 $racers = new RacerCollection();
-$racers->addRacer(new RacerGeneral('Car', 5, 10, 0.04, '╬'));
-// These below are just quick templates. For more control use 'RacerGeneral' instead ↑ ↑ ↑
+
 $racers->addRacer(new Biker('1'));
 $racers->addRacer(new Biker('2'));
 $racers->addRacer(new Donkey());
 $racers->addRacer(new Runner('1'));
 $racers->addRacer(new Runner('2'));
+// These above ↑ ↑ ↑ are just quick templates
+// For more control use 'RacerGeneral' instead ↓ ↓ ↓
+$racers->addRacer(new RacerGeneral('Car', 5, 10, 0.04, '╬'));
 
 $startTime = microtime(true);
 $nextWinningPlace = 1;
