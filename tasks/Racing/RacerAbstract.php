@@ -21,16 +21,6 @@ abstract class RacerAbstract implements Racer
         return $this->name;
     }
 
-    public function minSpeed(): int
-    {
-        return $this->minSpeed;
-    }
-
-    public function maxSpeed(): int
-    {
-        return $this->maxSpeed;
-    }
-
     public function crashRate(): float
     {
         return $this->crashRate;
@@ -59,7 +49,7 @@ abstract class RacerAbstract implements Racer
 
     public function move(): void
     {
-        $this->position += rand($this->minSpeed(), $this->maxSpeed());
+        $this->position += rand($this->minSpeed, $this->maxSpeed);
     }
 
     public function winningPlace(): int

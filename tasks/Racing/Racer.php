@@ -9,10 +9,6 @@ interface Racer
 {
     public function name(): string;
 
-    public function minSpeed(): int;
-
-    public function maxSpeed(): int;
-
     public function crashRate(): float;
 
     public function symbol(): string;
