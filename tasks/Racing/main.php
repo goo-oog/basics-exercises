@@ -45,11 +45,11 @@ do {
             . str_repeat('═', $racer->position())
             . $racer->symbol()
             . str_repeat('═', $trackLength - $racer->position())
-            . ($racer->winningPlace() > 0 ? '  Time: ' . sprintf('%0.2f s', $racer->time()) . '  Place : ' . $racer->winningPlace() : '')
+            . ($racer->winningPlace() > 0 ? sprintf("  Time: % 5.2f s     Place:  %d", $racer->time(), $racer->winningPlace()) : '')
             . ($racer->winningPlace() < 0 ? '  CRASHED' : '')
             . "\n\n";
     }
-    usleep(100000);
+    usleep(200000);
     $nextWinningPlace += $winsThisTick;
 } while ($racers->isSomebodyStillRacing());
 echo "\e[?25h"; // enable cursor
