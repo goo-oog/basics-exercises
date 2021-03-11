@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Racing;
 
 
-class Runner extends RacerGeneral
+class Runner extends RacerAbstract
 {
     public function __construct(string $name = '')
     {
-        parent::__construct('Runner' . " $name", 2, 3, 0.015, '╪');
+        $this->name = 'Runner' . " $name";
+        $this->minSpeed = 2;
+        $this->maxSpeed = 3;
+        $this->crashRate = 0.015;
+        $this->symbol = '╪';
     }
 }
