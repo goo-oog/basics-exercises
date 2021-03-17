@@ -1,0 +1,39 @@
+body {
+    margin-left: 2em;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.text {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.button-available {
+    background-color: white;
+    color: black;
+    border: 3px solid forestgreen;
+    width: 6em;
+    height: 3em;
+}
+
+.button-unavailable {
+    background-color: white;
+    color: black;
+    border: 3px solid maroon;
+    width: 6em;
+    height: 3em;
+}
+
+.button-available:hover {
+    background-color: forestgreen;
+    color: white;
+}
+
+.button-unavailable:hover {
+    background-color: maroon;
+    color: white;
+}

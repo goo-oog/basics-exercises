@@ -1,0 +1,42 @@
+{
+    "SY8363": {
+        "make": "Toyota",
+        "model": "Corolla",
+        "consumption": 4.7,
+        "price": 9000,
+        "status": "available",
+        "image": "toyota-corolla.png"
+    },
+    "KX2846": {
+        "make": "Nissan",
+        "model": "Pulsar",
+        "consumption": 4.9,
+        "price": 8000,
+        "status": "unavailable",
+        "image": "nissan-pulsar.png"
+    },
+    "WT3947": {
+        "make": "Honda",
+        "model": "Civic",
+        "consumption": 4.4,
+        "price": 8500,
+        "status": "available",
+        "image": "honda-civic.png"
+    },
+    "JQ7020": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "consumption": 4.8,
+        "price": 9500,
+        "status": "unavailable",
+        "image": "volkswagen-golf.png"
+    },
+    "TG836": {
+        "make": "Dacia",
+        "model": "Sandero",
+        "consumption": 5,
+        "price": 5000,
+        "status": "available",
+        "image": "dacia-sandero.png"
+    }
+}
