@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8" http-equiv="X-UA-Compatible" content="text/html"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <title>Car Rental</title>
+    <title>Auto noma</title>
 </head>
 <body>
 <h1>AUTO NOMA</h1>
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3><?= $car->make() . ' ' . $car->model() ?></h3>
                 <ul>
                     <li>Degvielas patēriņš: <?= $car->consumption() ?> l / 100km</li>
-                    <li><?= sprintf('Price: %0.2f € / diennaktī', $car->price() / 100) ?></li>
+                    <li><?= sprintf('Cena: %0.2f € / diennaktī', $car->price() / 100) ?></li>
                     <li>Statuss: <?= $car->statusLV() ?>
                     </li>
                 </ul>
