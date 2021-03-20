@@ -17,7 +17,7 @@ class Warehouse6_SQL implements Warehouse
         $db = 'flower_shop';
         $user = 'gints';
         $password = '';
-        $charset = 'utf8';
+        $charset = 'utf8mb4';
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
         $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
         try {
