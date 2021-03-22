@@ -24,7 +24,7 @@ if (!empty($shop->basket())):?>
         <?php else: ?>
             <tr>
                 <td colspan="4" class="grand-total">
-                    <?php printf('Grand total: %0.2f €', $shop->grandTotal()); ?>
+                    <?= sprintf('Grand total: %0.2f €', $shop->grandTotal()); ?>
                 </td>
             </tr>
         <?php endif; ?>
