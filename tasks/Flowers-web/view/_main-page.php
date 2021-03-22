@@ -5,7 +5,7 @@ namespace Flowershop;
 
 $shop = new Shop();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['inventory'])) {
     $shop->restoreInventory($_SESSION['inventory']);
     $shop->restoreBasket($_SESSION['basket']);
     if (isset($_POST['number'], $_POST['amount'])

@@ -5,6 +5,7 @@ require_once 'vendor/autoload.php';
 
 use Flowershop\Controllers\MainPageController;
 use Flowershop\Controllers\CheckoutController;
+use Flowershop\Controllers\NotFoundController;
 
 session_start();
 setcookie(session_name(), session_id(), time() + 300);
@@ -24,9 +25,10 @@ $uri = rawurldecode($uri);
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        echo '<b>404 Not found</b>';
+        call_user_func([NotFoundController::class, 'index']);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        call_user_func([NotFoundController::class, 'index']);
         $allowedMethods = $routeInfo[1];
         break;
     case FastRoute\Dispatcher::FOUND:
