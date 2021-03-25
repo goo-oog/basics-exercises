@@ -1,0 +1,13 @@
+{
+    "name": "gints/rps",
+    "description": "Rock, paper, scissors",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "RPSLS\\App\\":"app/",
+            "RPSLS\\Tests\\": "tests/"
+        }
+    }
+}
