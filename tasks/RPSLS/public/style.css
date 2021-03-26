@@ -12,8 +12,8 @@ table {
 }
 
 td {
-    width: 15rem;
-    height: 3rem;
+    width: 13rem;
+    height: 2.6rem;
     border-style: solid;
     border-width: 1px;
     border-color: black;
@@ -26,8 +26,8 @@ td {
     color: black;
     border: 1px solid black;
     font-size: large;
-    width: 15rem;
-    height: 3rem;
+    width: 13rem;
+    height: 2.6rem;
     border-radius: 0.5rem;
 }
 
@@ -36,18 +36,28 @@ td {
     color: white;
 }
 
+.Rock,
+.Paper,
+.Scissors,
+.Lizard,
+.Spock
+{
+    color: white;
+    font-weight: bold;
+}
+
 .Rock-header,
 .Paper-header,
 .Scissors-header,
 .Lizard-header,
-.Spock-header {
+.Spock-header
+{
     background-color: white;
     font-weight: bold;
 }
 
 .Rock {
     background-color: #241e21;
-    color: white;
 }
 
 .Rock-header {
@@ -91,5 +101,5 @@ td {
 }
 
 img {
-    width: 30rem;
+    width: 26rem;
 }
