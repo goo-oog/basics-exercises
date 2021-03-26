@@ -6,6 +6,6 @@
     <title>Rock·Paper·Scissors·Lizard·Spock</title>
 </head>
 <body>
-<div class="container">
+<div>
     <div>
-        <img src="images/RPSLS.webp" height="315px" width="315px">
+        <img src="images/RPSLS.webp" alt="RPSLS">

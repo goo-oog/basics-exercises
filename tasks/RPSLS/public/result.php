@@ -3,8 +3,8 @@
     $human = $game->human()->choice()->name();
     $computer = $game->computer()->choice()->name() ?>
     <tr>
-        <td class="<?= $human ?>">You</td>
-        <td class="<?= $computer ?>">Computer</td>
+        <td class="<?= $human . '-header' ?>">You</td>
+        <td class="<?= $computer . '-header' ?>">Computer</td>
     </tr>
     <tr>
         <td class="<?= $human ?>"><?= $human ?></td>

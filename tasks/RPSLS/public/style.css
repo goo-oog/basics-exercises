@@ -6,31 +6,29 @@ body {
 }
 
 table {
-    border-style: solid;
-    border-width: 1px;
-    border-collapse: collapse;
-    border-color: black;
     margin-left: auto;
     margin-right: auto;
+    border-spacing: 0.5rem;
 }
 
 td {
-    padding: 10px;
-    width: 25%;
+    width: 15rem;
+    height: 3rem;
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    font-size: large;
     text-align: center;
+    border-radius: 0.8rem;
 }
 
 .button {
     background-color: white;
     color: black;
     border: 1px solid black;
-    font-size: medium;
-    width: 12em;
-    height: 2em;
+    font-size: large;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 0.5rem;
 }
 
 .button:hover {
@@ -38,27 +36,60 @@ td {
     color: white;
 }
 
+.Rock-header,
+.Paper-header,
+.Scissors-header,
+.Lizard-header,
+.Spock-header {
+    background-color: white;
+    font-weight: bold;
+}
+
 .Rock {
     background-color: #241e21;
     color: white;
+}
+
+.Rock-header {
+    color: #241e21;
 }
 
 .Paper {
     background-color: #ebb014;
 }
 
+.Paper-header {
+    color: #ebb014;
+}
+
 .Scissors {
     background-color: #ba977b;
+}
+
+.Scissors-header {
+    color: #ba977b;
 }
 
 .Lizard {
     background-color: #a3aa9c;
 }
 
+.Lizard-header {
+    color: #a3aa9c;
+}
+
 .Spock {
     background-color: #4586b9;
 }
 
-.result{
+.Spock-header {
+    color: #4586b9;
+}
+
+.result {
     background-color: white;
+}
+
+img {
+    width: 30rem;
 }
