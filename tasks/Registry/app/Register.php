@@ -16,7 +16,7 @@ class Register
 
     public function __construct()
     {
-        $db = new MySQL();
+        $this->db = new MySQL();
     }
 
     /**
@@ -27,7 +27,11 @@ class Register
         return $this->db->getAll();
     }
 
-    public function getByCode(string $code): Person
+    /**
+     * @param string $code
+     * @return Person[]
+     */
+    public function getByCode(string $code): array
     {
         return $this->db->getByCode($code);
     }

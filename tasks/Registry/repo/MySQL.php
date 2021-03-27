@@ -42,11 +42,11 @@ class MySQL implements Repository
      */
     public function getByCode(string $code): array
     {
-//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE code = $code");
+//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE code LIKE $code");
 //        $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
 //        $stmt->execute();
 //        return $stmt->fetch();
-        return $this->pdo->query('SELECT * FROM registry.register WHERE code = $code')
+        return $this->pdo->query("SELECT * FROM registry.register WHERE code LIKE '$code'")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
@@ -56,11 +56,11 @@ class MySQL implements Repository
      */
     public function getByName(string $name):array
     {
-//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE name = $name");
+//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE name LIKE $name");
 //        $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
 //        $stmt->execute();
 //        return $stmt->fetch();
-        return $this->pdo->query('SELECT * FROM registry.register WHERE name = $name')
+        return $this->pdo->query("SELECT * FROM registry.register WHERE name LIKE '$name'")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
@@ -70,11 +70,11 @@ class MySQL implements Repository
      */
     public function getBySurname(string $surname): array
     {
-//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE surname = $surname");
+//        $stmt = $this->pdo->prepare("SELECT * FROM registry.register WHERE surname LIKE $surname");
 //        $stmt->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
 //        $stmt->execute();
 //        return $stmt->fetch();
-        return $this->pdo->query('SELECT * FROM registry.register WHERE surname = $name')
+        return $this->pdo->query("SELECT * FROM registry.register WHERE surname LIKE '$surname'")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 

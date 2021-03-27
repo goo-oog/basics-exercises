@@ -10,15 +10,32 @@ $db = new Register();
 //$db->deletePerson(new Person('06060611666','Abdurahman','ibn Hotab'));
 //$db->editNote(new Person('06060611666','Abdurahman','ibn Hotab'));
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if($_POST['query']===''){
-        $searchResult=$db->getAll();
-    }else{
-        $searchResult=$db->$_POST['column']($_POST['query']);
-    }
-}
-
 require 'header.php';
 require 'search.php';
-require 'table.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['query'])&&$_POST['query'] === '') {
+        $_POST['query'] = '%';
+    }
+    switch ($_POST['action']) {
+        case 'code':
+            $searchResult = $db->getByCode($_POST['query']);
+            break;
+        case 'name':
+            $searchResult = $db->getByName($_POST['query']);
+            break;
+        case 'surname':
+            $searchResult = $db->getBySurname($_POST['query']);
+            break;
+        case 'add':
+            //
+            break;
+        case 'delete':
+            $db->deletePerson($db->getByCode($_POST['code'])[0]);
+            break;
+        //case 'edit':
+            //
+    }
+
+    require 'table.php';
+}
 require 'footer.php';
