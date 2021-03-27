@@ -14,6 +14,6 @@ class Spock implements Element
 
     public function isDestroying(Element $element): bool
     {
-        return $element->name() === 'Scissors' || $element->name() === 'Rock';
+        return $element instanceof Scissors || $element instanceof Rock;
     }
 }

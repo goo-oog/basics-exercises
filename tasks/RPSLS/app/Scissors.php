@@ -14,6 +14,6 @@ class Scissors implements Element
 
     public function isDestroying(Element $element): bool
     {
-        return $element->name() === 'Paper' || $element->name() === 'Lizard';
+        return $element instanceof Paper || $element instanceof Lizard;
     }
 }

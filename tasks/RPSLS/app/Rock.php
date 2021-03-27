@@ -14,6 +14,6 @@ class Rock implements Element
 
     public function isDestroying(Element $element): bool
     {
-        return $element->name() === 'Scissors' || $element->name() === 'Lizard';
+        return $element instanceof Scissors || $element instanceof Lizard;
     }
 }

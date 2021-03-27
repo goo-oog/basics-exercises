@@ -14,6 +14,6 @@ class Paper implements Element
 
     public function isDestroying(Element $element): bool
     {
-        return $element->name() === 'Rock' || $element->name() === 'Spock';
+        return $element instanceof Rock || $element instanceof Spock;
     }
 }
