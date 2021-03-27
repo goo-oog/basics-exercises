@@ -1,0 +1,103 @@
+body {
+    font-family: sans-serif;
+    font-size: x-large;
+    text-align: center;
+    background-color: #efefef;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0.5rem;
+}
+
+td {
+    width: 13rem;
+    height: 2.6rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    text-align: center;
+    border-radius: 0.8rem;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    font-size: large;
+    width: 13rem;
+    height: 2.6rem;
+    border-radius: 0.5rem;
+}
+
+.button:hover {
+    background-color: #6d2128;
+    color: white;
+}
+
+.Rock,
+.Paper,
+.Scissors,
+.Lizard,
+.Spock {
+    color: white;
+    font-weight: bold;
+}
+
+.Rock-header,
+.Paper-header,
+.Scissors-header,
+.Lizard-header,
+.Spock-header {
+    background-color: white;
+    font-weight: bold;
+}
+
+.Rock {
+    background-color: #241e21;
+}
+
+.Rock-header {
+    color: #241e21;
+}
+
+.Paper {
+    background-color: #ebb014;
+}
+
+.Paper-header {
+    color: #ebb014;
+}
+
+.Scissors {
+    background-color: #ba977b;
+}
+
+.Scissors-header {
+    color: #ba977b;
+}
+
+.Lizard {
+    background-color: #a3aa9c;
+}
+
+.Lizard-header {
+    color: #a3aa9c;
+}
+
+.Spock {
+    background-color: #4586b9;
+}
+
+.Spock-header {
+    color: #4586b9;
+}
+
+.result {
+    background-color: white;
+}
+
+img {
+    width: 26rem;
+}

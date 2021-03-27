@@ -1,0 +1,16 @@
+{
+    "name": "gints/registry",
+    "description": "Civil registry",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Registry\\App\\": "app/",
+            "Registry\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "ext-pdo": "*"
+    }
+}
