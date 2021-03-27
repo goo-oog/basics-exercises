@@ -7,7 +7,8 @@
     "autoload": {
         "psr-4": {
             "Registry\\App\\": "app/",
-            "Registry\\Tests\\": "tests/"
+            "Registry\\Tests\\": "tests/",
+            "Registry\\Repo\\": "repo/"
         }
     },
     "require": {

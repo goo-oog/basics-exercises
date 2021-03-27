@@ -5,8 +5,9 @@
         <th>Uzvārds</th>
         <th>Piezīmes</th>
     </tr>
-    <?php /** @var \Registry\App\Repository $db */
-    foreach ($db->getAll() as $person):?>
+    <?php
+    /** @var \Registry\App\Person[] $searchResult */
+    foreach ($searchResult as $person):?>
         <tr>
             <td><?= $person->code() ?></td>
             <td><?= $person->name() ?></td>
