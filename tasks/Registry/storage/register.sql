@@ -27,7 +27,7 @@ CREATE TABLE `register`
     `code`    varchar(11) NOT NULL,
     `name`    varchar(63) NOT NULL,
     `surname` varchar(63) NOT NULL,
-    `note`    varchar(255) DEFAULT '',
+    `note`    varchar(4095) DEFAULT '',
     PRIMARY KEY (`code`),
     UNIQUE KEY `register_code_uindex` (`code`)
 ) ENGINE = InnoDB
@@ -43,9 +43,18 @@ LOCK TABLES `register` WRITE;
 /*!40000 ALTER TABLE `register`
     DISABLE KEYS */;
 INSERT INTO `register`
-VALUES ('01010021000', 'Jānis', 'Bērziņš', 'latvietis'),
-       ('06060611666', 'Abdurahman', 'ibn Hotab', ''),
+VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'bijusī Latvijas prezidente'),
+       ('06060611666', 'Abdurahman', 'Ibn Hotab', 'džins'),
+       ('08078512745', 'Inese', 'Lībiņa-Egnere', ''),
+       ('11119911000', 'Jānis', 'Bērziņš', 'vidējais latvietis'),
+       ('14044811709', 'Ojārs Ēriks', 'Kalniņš', ''),
+       ('17025412789', 'Eva', 'Mārtuža', ''),
+       ('18066912849', 'Dace', 'Rukšāne-Ščipčinska', ''),
+       ('18105110838', 'Janīna', 'Kursīte-Pakule', ''),
+       ('19115511030', 'Boriss', 'Cilēvičs', ''),
        ('22022211234', 'Vizma', 'Puķīte', 'mirusi'),
+       ('28048311758', 'Andrejs', 'Klementjevs', ''),
+       ('30018011290', 'Raivis', 'Dzintars', ''),
        ('31125011000', 'Alla', 'Ivanova', '');
 /*!40000 ALTER TABLE `register`
     ENABLE KEYS */;
@@ -60,4 +69,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-27 19:51:07
+-- Dump completed on 2021-03-28 19:53:02

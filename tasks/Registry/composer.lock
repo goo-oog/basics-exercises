@@ -4,60 +4,8 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "9dd8484455ac10b567ceca38b46002dc",
+  "content-hash": "d91f5043b477a2cdf2f00d919429f048",
   "packages": [
-    {
-      "name": "nikic/fast-route",
-      "version": "v1.3.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/nikic/FastRoute.git",
-        "reference": "181d480e08d9476e61381e04a71b34dc0432e812"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/nikic/FastRoute/zipball/181d480e08d9476e61381e04a71b34dc0432e812",
-        "reference": "181d480e08d9476e61381e04a71b34dc0432e812",
-        "shasum": ""
-      },
-      "require": {
-        "php": ">=5.4.0"
-      },
-      "require-dev": {
-        "phpunit/phpunit": "^4.8.35|~5.7"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "FastRoute\\": "src/"
-        },
-        "files": [
-          "src/functions.php"
-        ]
-      },
-      "notification-url": "https://packagist.org/downloads/",
-      "license": [
-        "BSD-3-Clause"
-      ],
-      "authors": [
-        {
-          "name": "Nikita Popov",
-          "email": "nikic@php.net"
-        }
-      ],
-      "description": "Fast request router for PHP",
-      "keywords": [
-        "router",
-        "routing"
-      ],
-      "support": {
-        "issues": "https://github.com/nikic/FastRoute/issues",
-        "source": "https://github.com/nikic/FastRoute/tree/master"
-      },
-      "time": "2018-02-13T20:26:39+00:00"
-    }
-  ],
-  "packages-dev": [
     {
       "name": "doctrine/instantiator",
       "version": "1.4.0",
@@ -184,6 +132,56 @@
         }
       ],
       "time": "2020-11-13T09:40:50+00:00"
+    },
+    {
+      "name": "nikic/fast-route",
+      "version": "v1.3.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/nikic/FastRoute.git",
+        "reference": "181d480e08d9476e61381e04a71b34dc0432e812"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/nikic/FastRoute/zipball/181d480e08d9476e61381e04a71b34dc0432e812",
+        "reference": "181d480e08d9476e61381e04a71b34dc0432e812",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.4.0"
+      },
+      "require-dev": {
+        "phpunit/phpunit": "^4.8.35|~5.7"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "FastRoute\\": "src/"
+        },
+        "files": [
+          "src/functions.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
+        {
+          "name": "Nikita Popov",
+          "email": "nikic@php.net"
+        }
+      ],
+      "description": "Fast request router for PHP",
+      "keywords": [
+        "router",
+        "routing"
+      ],
+      "support": {
+        "issues": "https://github.com/nikic/FastRoute/issues",
+        "source": "https://github.com/nikic/FastRoute/tree/master"
+      },
+      "time": "2018-02-13T20:26:39+00:00"
     },
     {
       "name": "nikic/php-parser",
@@ -579,16 +577,16 @@
     },
     {
       "name": "phpunit/php-code-coverage",
-      "version": "9.2.5",
+      "version": "9.2.6",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-        "reference": "f3e026641cc91909d421802dd3ac7827ebfd97e1"
+        "reference": "f6293e1b30a2354e8428e004689671b83871edde"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f3e026641cc91909d421802dd3ac7827ebfd97e1",
-        "reference": "f3e026641cc91909d421802dd3ac7827ebfd97e1",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/f6293e1b30a2354e8428e004689671b83871edde",
+        "reference": "f6293e1b30a2354e8428e004689671b83871edde",
         "shasum": ""
       },
       "require": {
@@ -644,7 +642,7 @@
       ],
       "support": {
         "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-        "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.5"
+        "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.6"
       },
       "funding": [
         {
@@ -652,7 +650,7 @@
           "type": "github"
         }
       ],
-      "time": "2020-11-28T06:44:49+00:00"
+      "time": "2021-03-28T07:26:59+00:00"
     },
     {
       "name": "phpunit/php-file-iterator",
@@ -2150,13 +2148,15 @@
       "time": "2021-03-09T10:59:23+00:00"
     }
   ],
+  "packages-dev": [],
   "aliases": [],
   "minimum-stability": "stable",
   "stability-flags": [],
   "prefer-stable": false,
   "prefer-lowest": false,
   "platform": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-mbstring": "*"
   },
   "platform-dev": [],
   "plugin-api-version": "2.0.0"

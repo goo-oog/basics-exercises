@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $searchResult = $db->getBySurname($_POST['query']);
             break;
         case 'add':
-            if (!$db->getByCode($_POST['code'])) {
+            if (!$db->getByCode(str_replace('-', '', $_POST['code']))) {
                 if (preg_match('/^\d{6}-?\d{5}$/', $_POST['code'])) {
                     if (preg_match('/^[a-zāčēģīķļņšūž]+[[:space:]]?[a-zāčēģīķļņšūž]+$/iu', $_POST['name'])) {
                         if (preg_match('/^[a-zāčēģīķļņšūž]+[-[:space:]]?[a-zāčēģīķļņšūž]+$/iu', $_POST['surname'])) {
@@ -45,11 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $message = 'Personas kods ' . $_POST['code'] . ' nav derīgs!';
                 }
             } else {
-                $message = 'Persona ar šādu kodu (' . substr($_POST['code'], 0, 6) . '-' . substr($_POST['code'], 6) . ') jau eksistē!';
+                $message = 'Persona ar šādu kodu ('
+                    . substr(str_replace('-', '', $_POST['code']), 0, 6)
+                    . '-' . substr(str_replace('-', '', $_POST['code']), 6)
+                    . ') jau eksistē!';
             }
             if (isset($message) && $message !== '') {
                 require 'return-back.php';
-                exit();
             }
             $searchResult = $db->getAll();
             break;

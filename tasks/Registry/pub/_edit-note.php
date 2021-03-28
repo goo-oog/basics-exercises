@@ -33,4 +33,6 @@ require 'header.php';
     </div>
 <?php
 require 'home-button.php';
-require 'footer.php'; ?>
+require 'footer.php';
+?>
+

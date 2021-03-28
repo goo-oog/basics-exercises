@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
 namespace Registry\Repo;
 
 use PDO;
