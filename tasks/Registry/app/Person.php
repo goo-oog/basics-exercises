@@ -39,9 +39,4 @@ class Person
     {
         return $this->note;
     }
-
-    public function setNote(string $note): void
-    {
-        $this->note = $note;
-    }
 }

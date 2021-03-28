@@ -1,41 +1,36 @@
 <?php
 declare(strict_types=1);
 
-use Registry\App\Register;
+use Registry\Controllers\AddPersonController;
+use Registry\Controllers\EditNoteController;
+use Registry\Controllers\MainPageController;
+use Registry\Controllers\NotFoundController;
 
 require_once '../vendor/autoload.php';
 
-$db = new Register();
-//$db->addPerson(new Person('06060611666','Abdurahman','ibn Hotab'));
-//$db->deletePerson(new Person('06060611666','Abdurahman','ibn Hotab'));
-//$db->editNote(new Person('06060611666','Abdurahman','ibn Hotab'));
+$dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
+    $r->get('/', [MainPageController::class, 'index']);
+    $r->post('/', [MainPageController::class, 'index']);
+    $r->post('/add', [AddPersonController::class, 'index']);
+    $r->post('/edit', [EditNoteController::class, 'index']);
+});
 
-require 'header.php';
-require 'search.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['query'])&&$_POST['query'] === '') {
-        $_POST['query'] = '%';
-    }
-    switch ($_POST['action']) {
-        case 'code':
-            $searchResult = $db->getByCode($_POST['query']);
-            break;
-        case 'name':
-            $searchResult = $db->getByName($_POST['query']);
-            break;
-        case 'surname':
-            $searchResult = $db->getBySurname($_POST['query']);
-            break;
-        case 'add':
-            //
-            break;
-        case 'delete':
-            $db->deletePerson($db->getByCode($_POST['code'])[0]);
-            break;
-        //case 'edit':
-            //
-    }
-
-    require 'table.php';
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+if (false !== $pos = strpos($uri, '?')) {
+    $uri = substr($uri, 0, $pos);
 }
-require 'footer.php';
+$uri = rawurldecode($uri);
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        call_user_func([NotFoundController::class, 'index']);
+        break;
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        call_user_func([NotFoundController::class, 'index']);
+        $allowedMethods = $routeInfo[1];
+        break;
+    case FastRoute\Dispatcher::FOUND:
+        call_user_func($routeInfo[1]);
+        break;
+}

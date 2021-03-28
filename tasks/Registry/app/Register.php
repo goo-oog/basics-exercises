@@ -8,10 +8,6 @@ use Registry\Repo\MySQL;
 
 class Register
 {
-    /**
-     * @var Person[]
-     */
-    private array $records;
     private Repository $db;
 
     public function __construct()

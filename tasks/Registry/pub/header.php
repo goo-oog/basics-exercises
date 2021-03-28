@@ -6,5 +6,6 @@
     <title>Personas datu reģistrs</title>
 </head>
 <body>
-<div>
+<div class="container">
     <div>
+        <h1>Personas datu reģistrs</h1>

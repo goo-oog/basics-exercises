@@ -1,24 +1,52 @@
 body {
     font-family: sans-serif;
-    font-size: x-large;
+    font-size: large;
     text-align: center;
-    background-color: #efefef;
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
-    border-spacing: 0.5rem;
+    border-collapse: collapse;
 }
 
-td {
-    width: 13rem;
-    height: 2.6rem;
+td, th {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+    background-color: white;
+}
+
+.table-columns-with-buttons {
     text-align: center;
-    border-radius: 0.8rem;
+}
+
+.table-column-code {
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.table-column-name, .table-column-surname, .table-column-note {
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.table-column-note {
+    width: 20rem;
+}
+
+.search-text-input, .edit-note-text-input {
+    font-size: large;
+    width: 20rem;
+    height: 1.5rem;
+}
+
+.search-select {
+    font-size: large;
+    width: 12rem;
+    height: 2rem;
 }
 
 .button {
@@ -26,78 +54,57 @@ td {
     color: black;
     border: 1px solid black;
     font-size: large;
-    width: 13rem;
-    height: 2.6rem;
-    border-radius: 0.5rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 0.2rem;
 }
 
 .button:hover {
-    background-color: #6d2128;
+    background-color: #2ca02c;
     color: white;
 }
 
-.Rock,
-.Paper,
-.Scissors,
-.Lizard,
-.Spock {
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.search-form, .search-result, .add-person-button, .add-person, .edit-note, .home-button, .code-404 {
+    background-color: #efefef;
+    border-style: solid;
+    border-width: 1px;
+    border-collapse: collapse;
+    border-color: black;
+    border-radius: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.add-person, .edit-note {
+    text-align: right;
+}
+
+.edit-button, .delete-button {
+    background-color: #efefef;
+    color: black;
+    border: 1px solid black;
+    font-size: small;
+    width: 4rem;
+    height: 1.5rem;
+    border-radius: 0.2rem;
+}
+
+.edit-button:hover {
+    background-color: #2ca02c;
     color: white;
-    font-weight: bold;
 }
 
-.Rock-header,
-.Paper-header,
-.Scissors-header,
-.Lizard-header,
-.Spock-header {
-    background-color: white;
-    font-weight: bold;
+.delete-button:hover {
+    background-color: #a71d2a;
+    color: white;
 }
 
-.Rock {
-    background-color: #241e21;
-}
-
-.Rock-header {
-    color: #241e21;
-}
-
-.Paper {
-    background-color: #ebb014;
-}
-
-.Paper-header {
-    color: #ebb014;
-}
-
-.Scissors {
-    background-color: #ba977b;
-}
-
-.Scissors-header {
-    color: #ba977b;
-}
-
-.Lizard {
-    background-color: #a3aa9c;
-}
-
-.Lizard-header {
-    color: #a3aa9c;
-}
-
-.Spock {
-    background-color: #4586b9;
-}
-
-.Spock-header {
-    color: #4586b9;
-}
-
-.result {
-    background-color: white;
-}
-
-img {
-    width: 26rem;
+.error-message {
+    color: #a71d2a;
 }
