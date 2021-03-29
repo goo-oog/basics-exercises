@@ -7,7 +7,7 @@ use Registry\App\Models\Person;
 use Registry\App\Repositories\Repository;
 use Registry\App\Repositories\MySQL;
 
-class Register
+class RepositoryService
 {
     private Repository $db;
 

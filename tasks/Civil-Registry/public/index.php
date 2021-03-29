@@ -3,16 +3,18 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Registry\App\Controllers\AddPersonController;
-use Registry\App\Controllers\EditNoteController;
 use Registry\App\Controllers\MainPageController;
 use Registry\App\Controllers\NotFoundController;
+use Registry\App\Controllers\PersonController;
+
+session_start();
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->get('/', [MainPageController::class, 'index']);
     $r->post('/', [MainPageController::class, 'index']);
-    $r->post('/add', [AddPersonController::class, 'index']);
-    $r->post('/edit', [EditNoteController::class, 'index']);
+    $r->get('/add', [PersonController::class, 'showAddPersonForm']);
+    $r->post('/add', [PersonController::class, 'add']);
+    $r->post('/edit', [PersonController::class, 'edit']);
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];

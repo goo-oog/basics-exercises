@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-use Registry\App\Services\Register;
+use Registry\App\Services\RepositoryService;
 
-$db = new Register();
+$db = new RepositoryService();
 
 require 'header.php';
 ?>
