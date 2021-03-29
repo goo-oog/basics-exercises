@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Registry\Tests;
 
-use Registry\App\Person;
-use Registry\App\Register;
+use Registry\App\Models\Person;
+use Registry\App\Services\Register;
 use PHPUnit\Framework\TestCase;
 
 class RegisterTest extends TestCase

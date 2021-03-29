@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-use Registry\Controllers\AddPersonController;
-use Registry\Controllers\EditNoteController;
-use Registry\Controllers\MainPageController;
-use Registry\Controllers\NotFoundController;
+require_once __DIR__ . '/../vendor/autoload.php';
 
-require_once '../vendor/autoload.php';
+use Registry\App\Controllers\AddPersonController;
+use Registry\App\Controllers\EditNoteController;
+use Registry\App\Controllers\MainPageController;
+use Registry\App\Controllers\NotFoundController;
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->get('/', [MainPageController::class, 'index']);

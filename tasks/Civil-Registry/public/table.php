@@ -9,7 +9,7 @@
             <th colspan="2">Piezīmes</th>
         </tr>
         <?php
-        /** @var \Registry\App\Person[] $searchResult */
+        /** @var \Registry\App\Models\Person[] $searchResult */
         foreach ($searchResult as $person):?>
             <tr>
                 <td class="table-columns-with-buttons">

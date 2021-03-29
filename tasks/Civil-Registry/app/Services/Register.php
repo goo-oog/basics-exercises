@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Registry\App;
+namespace Registry\App\Services;
 
-use Registry\Repo\Repository;
-use Registry\Repo\MySQL;
+use Registry\App\Models\Person;
+use Registry\App\Repositories\Repository;
+use Registry\App\Repositories\MySQL;
 
 class Register
 {

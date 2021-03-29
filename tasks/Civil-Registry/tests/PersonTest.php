@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Registry\Tests;
 
-use Registry\App\Person;
+use Registry\App\Models\Person;
 use PHPUnit\Framework\TestCase;
 
 class PersonTest extends TestCase

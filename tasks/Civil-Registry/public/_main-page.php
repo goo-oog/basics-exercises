@@ -1,10 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use Registry\App\Person;
-use Registry\App\Register;
-
-require_once '../vendor/autoload.php';
+use Registry\App\Models\Person;
+use Registry\App\Services\Register;
 
 $db = new Register();
 

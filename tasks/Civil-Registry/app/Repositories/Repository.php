@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Registry\Repo;
+namespace Registry\App\Repositories;
 
-use Registry\App\Person;
+use Registry\App\Models\Person;
 
 interface Repository
 {
@@ -11,6 +11,7 @@ interface Repository
      * @return Person[]
      */
     public function getAll(): array;
+
     /**
      * @param string $code
      * @return Person[]

@@ -1,33 +1,30 @@
 <?php
 declare(strict_types=1);
 
-use Registry\App\Register;
-
-$db = new Register();
-
 require 'header.php';
 ?>
     <br><br>
-    <h2>Labot piezīmi</h2>
-    <div class="edit-note">
+    <h2>Pievienot personu</h2>
+    <h3 class="error-message"><?= $_POST['message'] ?? '' ?></h3>
+    <div class="add-person">
         <form method="post" action="/">
             <label for="code">Personas kods:</label>
             <input type="text" class="edit-note-text-input" id="code" name="code"
-                   value="<?= $db->getByCode($_POST['code'])[0]->code() ?>" readonly/><br><br>
+                   value="<?= $_POST['code'] ?? '' ?>"/><br><br>
 
             <label for="name">Vārds:</label>
             <input type="text" class="edit-note-text-input" id="name" name="name"
-                   value="<?= $db->getByCode($_POST['code'])[0]->name() ?>" readonly/><br><br>
+                   value="<?= $_POST['name'] ?? '' ?>"/><br><br>
 
             <label for="surname">Uzvārds:</label>
             <input type="text" class="edit-note-text-input" id="surname" name="surname"
-                   value="<?= $db->getByCode($_POST['code'])[0]->surname() ?>" readonly/><br><br>
+                   value="<?= $_POST['surname'] ?? '' ?>"/><br><br>
 
             <label for="note">Piezīmes</label>
             <input type="text" class="edit-note-text-input" id="note" name="note"
-                   value="<?= $db->getByCode($_POST['code'])[0]->note() ?>"/><br>
+                   value="<?= $_POST['note'] ?? '' ?>"/><br><br>
 
-            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="action" value="add">
             <p style="text-align: center"><input type="submit" class="button" value="Pievienot"></p>
         </form>
     </div>
@@ -35,4 +32,3 @@ require 'header.php';
 require 'home-button.php';
 require 'footer.php';
 ?>
-

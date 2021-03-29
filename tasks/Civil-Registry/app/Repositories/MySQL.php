@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Registry\Repo;
+namespace Registry\App\Repositories;
 
 use PDO;
 use PDOException;
-use Registry\App\Person;
+use Registry\App\Models\Person;
 
 class MySQL implements Repository
 {
