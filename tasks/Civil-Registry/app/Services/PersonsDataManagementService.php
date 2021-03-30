@@ -34,6 +34,9 @@ class PersonsDataManagementService
         } else {
             $searchResult = $this->db->getAll();
         }
+        if ($_GET['query'] === '%') {
+            $_GET['query'] = '';
+        }
         require __DIR__ . '/../../public/_main-page.php';
     }
 
