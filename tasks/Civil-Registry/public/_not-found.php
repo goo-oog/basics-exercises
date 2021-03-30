@@ -7,5 +7,6 @@ require 'header.php';
     <div class="code-404">
         <h2>Šāda lapa neeksistē</h2>
     </div>
-<?php require 'home-button.php';
+<?php
+require 'home-button.php';
 require 'footer.php';

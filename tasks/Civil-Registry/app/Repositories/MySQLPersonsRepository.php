@@ -3,20 +3,23 @@ declare(strict_types=1);
 
 namespace Registry\App\Repositories;
 
+use Dotenv\Dotenv;
 use PDO;
 use PDOException;
 use Registry\App\Models\Person;
 
-class MySQL implements Repository
+class MySQLPersonsRepository implements PersonsRepository
 {
     private PDO $pdo;
 
     public function __construct()
     {
-        $host = 'localhost';
-        $db = 'registry';
-        $user = 'gints';
-        $password = '';
+        $dotenv = Dotenv::createImmutable(__DIR__ . ('/../..'));
+        $dotenv->safeLoad();
+        $host = $_ENV['HOST'];
+        $db = $_ENV['DB'];
+        $user = $_ENV['USER'];
+        $password = $_ENV['PASSWORD'];
         $charset = 'utf8mb4';
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
         $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
@@ -32,9 +35,10 @@ class MySQL implements Repository
      */
     public function getAll(): array
     {
-        return $this->pdo->query('SELECT * FROM registry.register')
+        return $this->pdo->query('SELECT * FROM registry.register ORDER BY surname')
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
+
     /**
      * @param string $code
      * @return Person[]
@@ -49,7 +53,7 @@ class MySQL implements Repository
      * @param string $name
      * @return Person[]
      */
-    public function getByName(string $name):array
+    public function getByName(string $name): array
     {
         return $this->pdo->query("SELECT * FROM registry.register WHERE name LIKE '$name' ORDER BY name")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);

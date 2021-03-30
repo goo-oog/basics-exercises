@@ -5,7 +5,7 @@ namespace Registry\App\Repositories;
 
 use Registry\App\Models\Person;
 
-interface Repository
+interface PersonsRepository
 {
     /**
      * @return Person[]

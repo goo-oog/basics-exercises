@@ -4,16 +4,15 @@ declare(strict_types=1);
 namespace Registry\App\Services;
 
 use Registry\App\Models\Person;
-use Registry\App\Repositories\Repository;
-use Registry\App\Repositories\MySQL;
+use Registry\App\Repositories\PersonsRepository;
 
 class RepositoryService
 {
-    private Repository $db;
+    private PersonsRepository $db;
 
-    public function __construct()
+    public function __construct(PersonsRepository $repository)
     {
-        $this->db = new MySQL();
+        $this->db = $repository;
     }
 
     /**

@@ -13,9 +13,9 @@
         foreach ($searchResult as $person):?>
             <tr>
                 <td class="table-columns-with-buttons">
-                    <form method="post">
-                        <input type="hidden" name="code" value="<?= $person->code() ?>">
-                        <button type="submit" class="delete-button" name="action" value="delete">Dzēst</button>
+                    <form method="post" action="/delete">
+                        <input type="hidden" name="code" value="<?= $person->code() ?>"/>
+                        <input type="submit" class="delete-button" value="Dzēst"/>
                     </form>
                 </td>
                 <td class="table-column-code"><?= substr($person->code(), 0, 6) . '-' . substr($person->code(), 6) ?></td>
@@ -24,7 +24,7 @@
                 <td class="table-column-note"><?= $person->note() ?></td>
                 <td class="table-columns-with-buttons">
                     <form method="post" action="/edit">
-                        <input type="hidden" name="code" value="<?= $person->code() ?>">
+                        <input type="hidden" name="code" value="<?= $person->code() ?>"/>
                         <input type="submit" class="edit-button" value="Labot"/>
                     </form>
                 </td>
