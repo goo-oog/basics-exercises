@@ -31,11 +31,11 @@ class PersonsDataManagementService
                 case 'surname':
                     $searchResult = $this->db->getBySurname($_GET['query']);
             }
+            if ($_GET['query'] === '%') {
+                $_GET['query'] = '';
+            }
         } else {
             $searchResult = $this->db->getAll();
-        }
-        if ($_GET['query'] === '%') {
-            $_GET['query'] = '';
         }
         require __DIR__ . '/../../public/_main-page.php';
     }
