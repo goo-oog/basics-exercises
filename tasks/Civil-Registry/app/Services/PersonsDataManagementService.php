@@ -80,7 +80,7 @@ class PersonsDataManagementService
                     $message = "Vārds '" . $_POST['name'] . "' nav derīgs!";
                 }
             } else {
-                $message = 'Personas kods ' . $_POST['code'] . ' nav derīgs!';
+                $message = "Personas kods '" . $_POST['code'] . "' nav derīgs!";
             }
         } else {
             $message = 'Persona ar šādu kodu ('
