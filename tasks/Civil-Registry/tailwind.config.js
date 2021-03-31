@@ -1,6 +1,7 @@
 module.exports = {
   purge: [
-    './'
+    './public/*.php',
+    './src/*.css',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -9,5 +10,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: []
 }
