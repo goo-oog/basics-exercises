@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply font-sans text-center;
+}
+
+.container-page {
+    @apply flex justify-center;
+}
+
+.container-shaded, .add-person, .edit-address, .edit-note {
+    @apply mx-auto justify-center bg-gray-200 px-4 py-4 rounded-xl;
+}
+
+.add-person, .edit-address, .edit-note {
+    @apply text-right;
+}
+
+h1 {
+    @apply text-4xl font-bold py-3;
+}
+
+h2 {
+    @apply text-3xl pb-3;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+p {
+    @apply text-center;
+}
+
+.error-message {
+    @apply text-red-700;
+}
+
+table {
+    @apply ml-auto mr-auto border-collapse;
+}
+
+td, th {
+    @apply border border-solid  border-black bg-white;
+}
+
+th {
+    @apply px-4;
+}
+
+.table-columns-with-buttons {
+    @apply text-center;
+}
+
+.table-column-code {
+    @apply text-center px-4;
+}
+
+.table-column-name, .table-column-surname, .table-column-address, .table-column-note {
+    @apply text-left px-4;
+}
+
+label {
+    @apply text-xl;
+}
+
+.text-input {
+    @apply text-lg w-80 h-7 ml-2 pl-2;
+}
+
+.text-input:read-only {
+    @apply bg-gray-200;
+}
+
+.search-select {
+    @apply text-lg w-48 h-7 ml-2;
+}
+
+.add-person-gender {
+    @apply text-lg w-80 h-7;
+}
+
+.button-blue, .button-green {
+    @apply w-44 h-8 bg-white text-black text-lg hover:text-white px-1 border border-gray-500 hover:border-black rounded;
+}
+
+.button-blue {
+    @apply hover:bg-blue-500;
+}
+
+.button-green {
+    @apply hover:bg-green-500;
+}
+
+.button-small-red {
+    @apply bg-white hover:bg-red-500 text-black text-sm hover:text-white px-1 border border-gray-500 hover:border-black rounded;
+}
+
+.button-small-green {
+    @apply bg-white hover:bg-green-500 text-black text-sm hover:text-white px-1 border border-gray-500 hover:border-black rounded;
+}

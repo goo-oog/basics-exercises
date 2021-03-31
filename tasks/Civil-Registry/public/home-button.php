@@ -1,6 +1,6 @@
 <br>
-<div class="home-button">
+<div class="container-shaded">
     <form action="/" method="get">
-        <input class="button" type="submit" value="Uz sākumu"/>
+        <input type="submit" value="Uz sākumu" class="button-blue"/>
     </form>
 </div>

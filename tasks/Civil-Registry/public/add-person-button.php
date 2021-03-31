@@ -1,6 +1,6 @@
 <br>
-<div class="add-person-button">
+<div class="container-shaded">
     <form method="get" action="/add">
-        <input type="submit" class="button" value="Pievienot personu"/>
+        <input type="submit" value="Pievienot personu" class="button-green"/>
     </form>
 </div>

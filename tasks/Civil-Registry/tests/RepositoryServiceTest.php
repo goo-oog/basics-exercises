@@ -15,7 +15,7 @@ class RepositoryServiceTest extends TestCase
     public function testAddPerson_getByCode_deletePerson(): void
     {
         $db = new RepositoryService(new $this->repository());
-        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'vīrietis'));
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
         self::assertInstanceOf(Person::class, $db->getByCode('12345612345')[0]);
         $db->deletePerson($db->getByCode('12345612345')[0]);
     }
@@ -23,7 +23,7 @@ class RepositoryServiceTest extends TestCase
     public function testGetAll(): void
     {
         $db = new RepositoryService(new $this->repository());
-        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'vīrietis'));
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
         self::assertIsArray($db->getAll());
         $db->deletePerson($db->getByCode('12345612345')[0]);
     }
@@ -31,25 +31,42 @@ class RepositoryServiceTest extends TestCase
     public function testGetBySurname(): void
     {
         $db = new RepositoryService(new $this->repository());
-        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'vīrietis'));
-        self::assertIsString($db->getBySurname('Bērziņš')[0]->surname(), 'Bērziņš');
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
+        self::assertEquals('Bērziņš', $db->getBySurname('Bērziņš')[0]->surname());
         $db->deletePerson($db->getByCode('12345612345')[0]);
     }
 
     public function testGetByName(): void
     {
         $db = new RepositoryService(new $this->repository());
-        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'vīrietis'));
-        self::assertIsString($db->getByName('Jānis')[0]->surname(), 'Jānis');
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
+        self::assertEquals('Jānis', $db->getByName('Jānis')[0]->name());
+        $db->deletePerson($db->getByCode('12345612345')[0]);
+    }
+
+    public function testGetByGender(): void
+    {
+        $db = new RepositoryService(new $this->repository());
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
+        self::assertEquals('M', $db->getByName('Jānis')[0]->gender());
         $db->deletePerson($db->getByCode('12345612345')[0]);
     }
 
     public function testEditNote(): void
     {
         $db = new RepositoryService(new $this->repository());
-        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš'));
-        $db->editNote(new Person('12345612345', 'Jānis', 'Bērziņš', 'vīrietis'));
-        self::assertIsString($db->getByCode('12345612345')[0]->note(), 'vīrietis');
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
+        $db->editNote(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '', 'Test'));
+        self::assertEquals('Test', $db->getByCode('12345612345')[0]->note());
+        $db->deletePerson($db->getByCode('12345612345')[0]);
+    }
+
+    public function testEditAddress(): void
+    {
+        $db = new RepositoryService(new $this->repository());
+        $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M'));
+        $db->editAddress(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', 'Rīga'));
+        self::assertEquals('Rīga', $db->getByCode('12345612345')[0]->address());
         $db->deletePerson($db->getByCode('12345612345')[0]);
     }
 }

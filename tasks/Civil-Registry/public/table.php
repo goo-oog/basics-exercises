@@ -1,5 +1,5 @@
 <br>
-<div class="search-result">
+<div class="container-shaded">
     <table>
         <tr>
             <th></th>
@@ -14,10 +14,10 @@
         /** @var \Registry\App\Models\Person[] $searchResult */
         foreach ($searchResult as $person):?>
             <tr>
-                <td class="table-columns-with-buttons">
+                <td>
                     <form method="post" action="/delete">
                         <input type="hidden" name="code" value="<?= $person->code() ?>"/>
-                        <input type="submit" class="delete-button" value="Dzēst"/>
+                        <input type="submit" class="button-small-red" value="Dzēst"/>
                     </form>
                 </td>
                 <td class="table-column-code"><?= substr($person->code(), 0, 6) . '-' . substr($person->code(), 6) ?></td>
@@ -28,14 +28,14 @@
                 <td class="table-columns-with-buttons">
                     <form method="post" action="/edit-address">
                         <input type="hidden" name="code" value="<?= $person->code() ?>"/>
-                        <input type="submit" class="edit-button" value="Labot"/>
+                        <input type="submit" class="button-small-green" value="Labot"/>
                     </form>
                 </td>
                 <td class="table-column-note"><?= $person->note() ?></td>
                 <td class="table-columns-with-buttons">
                     <form method="post" action="/edit-note">
                         <input type="hidden" name="code" value="<?= $person->code() ?>"/>
-                        <input type="submit" class="edit-button" value="Labot"/>
+                        <input type="submit" class="button-small-green" value="Labot"/>
                     </form>
                 </td>
             </tr>

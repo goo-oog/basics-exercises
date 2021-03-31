@@ -1,5 +1,5 @@
 <br>
-<div class="search-form">
+<div class="container-shaded">
     <form method="get">
         <label for="query">Ko meklēt:</label>
         <input type="text" class="text-input" id="query" name="query" value="<?= $_GET['query'] ?? '' ?>"/>
@@ -22,6 +22,6 @@
                 selected<?php endif; ?>>adrese
             </option>
         </select>
-        <input type="submit" class="button" value="Meklēt">
+        <input type="submit" value="Meklēt" class="button-blue">
     </form>
 </div>

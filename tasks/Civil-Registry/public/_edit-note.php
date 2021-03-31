@@ -22,12 +22,15 @@ require 'header.php';
             <label for="note">Piezīmes</label>
             <input type="text" class="text-input" id="note" name="note"
                    value="<?= $this->db->getByCode($_POST['code'])[0]->note() ?>"/>
-            <br>
+
             <input type="hidden" id="gender" name="gender"
                    value="<?= $this->db->getByCode($_POST['code'])[0]->gender() ?>"/>
             <input type="hidden" id="address" name="address"
                    value="<?= $this->db->getByCode($_POST['code'])[0]->address() ?>"/>
-            <p style="text-align: center"><input type="submit" class="button" value="Labot"></p>
+            <br><br>
+            <p>
+                <input type="submit" class="button-green" value="Labot">
+            </p>
         </form>
     </div>
 <?php

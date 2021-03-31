@@ -4,8 +4,8 @@ declare(strict_types=1);
 require 'header.php';
 ?>
     <br>
-    <div class="code-404">
-        <h2>Šāda lapa neeksistē</h2>
+    <div class="container-shaded">
+        <h3>Šāda lapa neeksistē</h3>
     </div>
 <?php
 require 'home-button.php';

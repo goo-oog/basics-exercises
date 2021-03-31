@@ -5,7 +5,7 @@ require 'header.php';
 ?>
     <br>
     <h2>Pievienot personu</h2>
-    <h3 class="error-message"><?= $_SESSION['memory']['message'] ?? '' ?></h3>
+    <h4 class="error-message"><?= $_SESSION['memory']['message'] ?? '' ?></h4>
     <div class="add-person">
         <form method="post" action="/add/execute">
             <label for="code">Personas kods:</label>
@@ -40,9 +40,9 @@ require 'header.php';
             <label for="note">Piezīmes</label>
             <input type="text" class="text-input" id="note" name="note"
                    value="<?= $_SESSION['memory']['note'] ?? '' ?>"/>
-            <br>
-            <p style="text-align: center">
-                <input type="submit" class="button" value="Pievienot">
+            <br><br>
+            <p>
+                <input type="submit" class="button-green" value="Pievienot">
             </p>
         </form>
     </div>
