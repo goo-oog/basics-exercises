@@ -18,21 +18,16 @@ class PersonsDataManagementService
     {
         unset($_SESSION['memory']);
         if (isset($_GET['search'])) {
-            if ($_GET['query'] === '') {
-                $_GET['query'] = '%';
-            }
+            $query = $_GET['query'] === '' ? '%' : $_GET['query'];
             switch ($_GET['search']) {
                 case 'code':
-                    $searchResult = $this->db->getByCode($_GET['query']);
+                    $searchResult = $this->db->getByCode($query);
                     break;
                 case 'name':
-                    $searchResult = $this->db->getByName($_GET['query']);
+                    $searchResult = $this->db->getByName($query);
                     break;
                 case 'surname':
-                    $searchResult = $this->db->getBySurname($_GET['query']);
-            }
-            if ($_GET['query'] === '%') {
-                $_GET['query'] = '';
+                    $searchResult = $this->db->getBySurname($query);
             }
         } else {
             $searchResult = $this->db->getAll();

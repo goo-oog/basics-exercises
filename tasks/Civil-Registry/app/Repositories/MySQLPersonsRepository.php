@@ -35,7 +35,7 @@ class MySQLPersonsRepository implements PersonsRepository
      */
     public function getAll(): array
     {
-        return $this->pdo->query('SELECT * FROM registry.register ORDER BY surname')
+        return $this->pdo->query('SELECT * FROM persons ORDER BY surname')
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
@@ -45,7 +45,7 @@ class MySQLPersonsRepository implements PersonsRepository
      */
     public function getByCode(string $code): array
     {
-        return $this->pdo->query("SELECT * FROM registry.register WHERE code LIKE '$code' ORDER BY code")
+        return $this->pdo->query("SELECT * FROM persons WHERE code LIKE '$code' ORDER BY code")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
@@ -55,7 +55,7 @@ class MySQLPersonsRepository implements PersonsRepository
      */
     public function getByName(string $name): array
     {
-        return $this->pdo->query("SELECT * FROM registry.register WHERE name LIKE '$name' ORDER BY name")
+        return $this->pdo->query("SELECT * FROM persons WHERE name LIKE '$name' ORDER BY name")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
@@ -65,23 +65,23 @@ class MySQLPersonsRepository implements PersonsRepository
      */
     public function getBySurname(string $surname): array
     {
-        return $this->pdo->query("SELECT * FROM registry.register WHERE surname LIKE '$surname' ORDER BY surname")
+        return $this->pdo->query("SELECT * FROM persons WHERE surname LIKE '$surname' ORDER BY surname")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'note']);
     }
 
     public function addPerson(Person $person): void
     {
-        $this->pdo->prepare('INSERT INTO registry.register (code, name, surname, note) VALUES (?,?,?,?)')
+        $this->pdo->prepare('INSERT INTO persons (code, name, surname, note) VALUES (?,?,?,?)')
             ->execute([$person->code(), $person->name(), $person->surname(), $person->note()]);
     }
 
     public function deletePerson(Person $person): void
     {
-        $this->pdo->prepare("DELETE FROM registry.register WHERE code='{$person->code()}'")->execute();
+        $this->pdo->prepare("DELETE FROM persons WHERE code='{$person->code()}'")->execute();
     }
 
     public function editNote(Person $person): void
     {
-        $this->pdo->prepare("UPDATE registry.register SET note='{$person->note()}' WHERE code='{$person->code()}'")->execute();
+        $this->pdo->prepare("UPDATE persons SET note='{$person->note()}' WHERE code='{$person->code()}'")->execute();
     }
 }

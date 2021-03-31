@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
 
 --
--- Table structure for table `register`
+-- Table structure for table `persons`
 --
 
-DROP TABLE IF EXISTS `register`;
+DROP TABLE IF EXISTS `persons`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `register`
+CREATE TABLE `persons`
 (
     `code`    varchar(11) NOT NULL,
     `name`    varchar(63) NOT NULL,
@@ -36,16 +36,17 @@ CREATE TABLE `register`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `register`
+-- Dumping data for table `persons`
 --
 
-LOCK TABLES `register` WRITE;
-/*!40000 ALTER TABLE `register`
+LOCK TABLES `persons` WRITE;
+/*!40000 ALTER TABLE `persons`
     DISABLE KEYS */;
-INSERT INTO `register`
+INSERT INTO `persons`
 VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'bijusī Latvijas prezidente'),
        ('06060611666', 'Abdurahman', 'Ibn Hotab', 'džins'),
        ('08078512745', 'Inese', 'Lībiņa-Egnere', ''),
+       ('09090921999', 'Andrejs', 'Bērziņš', ''),
        ('11119911000', 'Jānis', 'Bērziņš', 'vidējais latvietis'),
        ('14044811709', 'Ojārs Ēriks', 'Kalniņš', ''),
        ('17025412789', 'Eva', 'Mārtuža', ''),
@@ -53,10 +54,10 @@ VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'bijusī Latvijas prezidente
        ('18105110838', 'Janīna', 'Kursīte-Pakule', ''),
        ('19115511030', 'Boriss', 'Cilēvičs', ''),
        ('22022211234', 'Vizma', 'Puķīte', 'mirusi'),
+       ('22105512976', 'Dagmāra', 'Beitnere-Le Galla', ''),
        ('28048311758', 'Andrejs', 'Klementjevs', ''),
-       ('30018011290', 'Raivis', 'Dzintars', ''),
-       ('31125011000', 'Alla', 'Ivanova', '');
-/*!40000 ALTER TABLE `register`
+       ('30018011290', 'Raivis', 'Dzintars', '');
+/*!40000 ALTER TABLE `persons`
     ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
@@ -69,4 +70,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-28 19:53:02
+-- Dump completed on 2021-03-31 10:09:12
