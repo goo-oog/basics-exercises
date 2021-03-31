@@ -27,6 +27,8 @@ CREATE TABLE `persons`
     `code`    varchar(11) NOT NULL,
     `name`    varchar(63) NOT NULL,
     `surname` varchar(63) NOT NULL,
+    `gender`  varchar(1)  NOT NULL,
+    `address` varchar(63)   DEFAULT '',
     `note`    varchar(4095) DEFAULT '',
     PRIMARY KEY (`code`),
     UNIQUE KEY `register_code_uindex` (`code`)
@@ -43,20 +45,20 @@ LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons`
     DISABLE KEYS */;
 INSERT INTO `persons`
-VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'bijusī Latvijas prezidente'),
-       ('06060611666', 'Abdurahman', 'Ibn Hotab', 'džins'),
-       ('08078512745', 'Inese', 'Lībiņa-Egnere', ''),
-       ('09090921999', 'Andrejs', 'Bērziņš', ''),
-       ('11119911000', 'Jānis', 'Bērziņš', 'vidējais latvietis'),
-       ('14044811709', 'Ojārs Ēriks', 'Kalniņš', ''),
-       ('17025412789', 'Eva', 'Mārtuža', ''),
-       ('18066912849', 'Dace', 'Rukšāne-Ščipčinska', ''),
-       ('18105110838', 'Janīna', 'Kursīte-Pakule', ''),
-       ('19115511030', 'Boriss', 'Cilēvičs', ''),
-       ('22022211234', 'Vizma', 'Puķīte', 'mirusi'),
-       ('22105512976', 'Dagmāra', 'Beitnere-Le Galla', ''),
-       ('28048311758', 'Andrejs', 'Klementjevs', ''),
-       ('30018011290', 'Raivis', 'Dzintars', '');
+VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'F', '', 'bijusī Latvijas prezidente'),
+       ('06060611666', 'Abdurahman', 'Ibn Hotab', 'M', 'Mecca', 'džins'),
+       ('08078512745', 'Inese', 'Lībiņa-Egnere', 'F', '', ''),
+       ('09090921999', 'Andrejs', 'Bērziņš', 'M', '', ''),
+       ('11119911000', 'Jānis', 'Bērziņš', 'M', '', 'vidējais latvietis'),
+       ('14044811709', 'Ojārs Ēriks', 'Kalniņš', 'M', '', ''),
+       ('17025412789', 'Eva', 'Mārtuža', 'F', '', ''),
+       ('18066912849', 'Dace', 'Rukšāne-Ščipčinska', 'F', '', ''),
+       ('18105110838', 'Janīna', 'Kursīte-Pakule', 'F', '', ''),
+       ('19115511030', 'Boriss', 'Cilēvičs', 'M', 'Rīga', ''),
+       ('22022211234', 'Vizma', 'Puķīte', 'F', '', 'mirusi'),
+       ('22105512976', 'Dagmāra', 'Beitnere-Le Galla', 'F', '', ''),
+       ('28048311758', 'Andrejs', 'Klementjevs', 'M', '', ''),
+       ('30018011290', 'Raivis', 'Dzintars', 'M', '', '');
 /*!40000 ALTER TABLE `persons`
     ENABLE KEYS */;
 UNLOCK TABLES;
@@ -70,4 +72,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-31 10:09:12
+-- Dump completed on 2021-03-31 12:45:25

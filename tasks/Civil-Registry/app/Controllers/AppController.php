@@ -19,6 +19,16 @@ class AppController
         $this->personsService->showMainPage();
     }
 
+    public function showEditAddressForm(): void
+    {
+        $this->personsService->showEditAddressForm();
+    }
+
+    public function editAddress(): void
+    {
+        $this->personsService->editAddress();
+    }
+
     public function showEditNoteForm(): void
     {
         $this->personsService->showEditNoteForm();

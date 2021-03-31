@@ -23,8 +23,10 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->get('/', [AppController::class, 'showMainPage']);
     $r->get('/add', [AppController::class, 'showAddPersonForm']);
     $r->post('/add/execute', [AppController::class, 'addPerson']);
-    $r->post('/edit', [AppController::class, 'showEditNoteForm']);
-    $r->post('/edit/execute', [AppController::class, 'editNote']);
+    $r->post('/edit-address', [AppController::class, 'showEditAddressForm']);
+    $r->post('/edit-address/execute', [AppController::class, 'editAddress']);
+    $r->post('/edit-note', [AppController::class, 'showEditNoteForm']);
+    $r->post('/edit-note/execute', [AppController::class, 'editNote']);
     $r->post('/delete', [AppController::class, 'deletePerson']);
 });
 

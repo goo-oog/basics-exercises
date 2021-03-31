@@ -50,6 +50,16 @@ class RepositoryService
         return $this->db->getBySurname($surname);
     }
 
+    public function getByGender(string $gender): array
+    {
+        return $this->db->getByGender($gender);
+    }
+
+    public function getByAddress(string $address): array
+    {
+        return $this->db->getByAddress($address);
+    }
+
     public function addPerson(Person $person): void
     {
         $this->db->addPerson($person);
@@ -63,5 +73,10 @@ class RepositoryService
     public function editNote(Person $person): void
     {
         $this->db->editNote($person);
+    }
+
+    public function editAddress(Person $person): void
+    {
+        $this->db->editAddress($person);
     }
 }
