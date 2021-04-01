@@ -13,7 +13,7 @@
         </tr>
         {% for person in persons %}
             <tr>
-                <td>
+                <td class="table-columns-with-buttons">
                     <form method="post" action="/delete">
                         <input type="hidden" name="code" value="{{ person.code() }}"/>
                         <input type="submit" class="button-small-red" value="Dzēst"/>
