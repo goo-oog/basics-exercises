@@ -14,8 +14,8 @@ class NotFoundController
         $this->twig = new TwigService();
     }
 
-    public function index(): void
+    public function index(): string
     {
-        echo $this->twig->environment()->render('_not-found.twig');
+        return $this->twig->environment()->render('_not-found.twig');
     }
 }

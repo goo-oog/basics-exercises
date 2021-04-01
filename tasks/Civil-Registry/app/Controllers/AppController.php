@@ -14,14 +14,14 @@ class AppController
         $this->personsService = $personsService;
     }
 
-    public function showMainPage(): void
+    public function showMainPage(): string
     {
-        echo $this->personsService->showMainPage();
+        return $this->personsService->showMainPage();
     }
 
-    public function showEditAddressForm(): void
+    public function showEditAddressForm(): string
     {
-        echo $this->personsService->showEditAddressForm();
+        return $this->personsService->showEditAddressForm();
     }
 
     public function editAddress(): void
@@ -29,9 +29,9 @@ class AppController
         $this->personsService->editAddress();
     }
 
-    public function showEditNoteForm(): void
+    public function showEditNoteForm(): string
     {
-        echo $this->personsService->showEditNoteForm();
+        return $this->personsService->showEditNoteForm();
     }
 
     public function editNote(): void
@@ -44,9 +44,9 @@ class AppController
         $this->personsService->deletePerson();
     }
 
-    public function showAddPersonForm(): void
+    public function showAddPersonForm(): string
     {
-        echo $this->personsService->showAddPersonForm();
+        return $this->personsService->showAddPersonForm();
     }
 
     public function addPerson(): void
