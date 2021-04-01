@@ -8,10 +8,17 @@ use Registry\App\Models\Person;
 class PersonsDataManagementService
 {
     private RepositoryService $db;
+    private TwigService $twig;
+    private array $twigVariables = [];
 
     public function __construct(RepositoryService $repositoryService)
     {
         $this->db = $repositoryService;
+        $this->twig = new TwigService();
+        $this->twigVariables['GET'] = $_GET;
+        $this->twigVariables['POST'] = $_POST;
+        $this->twigVariables['SESSION'] = $_SESSION;
+        $this->twigVariables['db'] = $this->db;
     }
 
     public function showMainPage(): void
@@ -43,12 +50,13 @@ class PersonsDataManagementService
         } else {
             $searchResult = $this->db->getAll();
         }
-        require __DIR__ . '/../../public/_main-page.php';
+        $this->twigVariables['persons'] = $searchResult;
+        echo $this->twig->environment()->render('_main-page.twig', $this->twigVariables);
     }
 
     public function showEditAddressForm(): void
     {
-        require __DIR__ . '/../../public/_edit-address.php';
+        echo $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
     }
 
     public function editAddress(): void
@@ -59,7 +67,7 @@ class PersonsDataManagementService
 
     public function showEditNoteForm(): void
     {
-        require __DIR__ . '/../../public/_edit-note.php';
+        echo $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
     }
 
     public function editNote(): void
@@ -76,7 +84,7 @@ class PersonsDataManagementService
 
     public function showAddPersonForm(): void
     {
-        require __DIR__ . '/../../public/_add-person.php';
+        echo $this->twig->environment()->render('_add-person.twig', $this->twigVariables);
     }
 
     public function addPerson(): void

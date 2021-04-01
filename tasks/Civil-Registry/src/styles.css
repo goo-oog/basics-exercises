@@ -11,7 +11,7 @@ body {
 }
 
 .container-shaded, .add-person, .edit-address, .edit-note {
-    @apply mx-auto justify-center bg-gray-200 px-4 py-4 rounded-xl;
+    @apply mx-auto justify-center bg-blue-50 px-4 py-4 rounded-xl;
 }
 
 .add-person, .edit-address, .edit-note {
@@ -75,7 +75,7 @@ label {
 }
 
 .text-input:read-only {
-    @apply bg-gray-200;
+    @apply bg-red-50;
 }
 
 .search-select {

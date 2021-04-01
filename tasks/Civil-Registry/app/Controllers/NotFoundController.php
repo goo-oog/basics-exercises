@@ -3,10 +3,19 @@ declare(strict_types=1);
 
 namespace Registry\App\Controllers;
 
+use Registry\App\Services\TwigService;
+
 class NotFoundController
 {
+    private TwigService $twig;
+
+    public function __construct()
+    {
+        $this->twig = new TwigService();
+    }
+
     public function index(): void
     {
-        require_once __DIR__ . '/../../public/_not-found.php';
+        echo $this->twig->environment()->render('_not-found.twig');
     }
 }

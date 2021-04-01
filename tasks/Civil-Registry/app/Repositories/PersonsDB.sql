@@ -45,20 +45,20 @@ LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons`
     DISABLE KEYS */;
 INSERT INTO `persons`
-VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'F', '', 'bijusī Latvijas prezidente'),
+VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'F', 'Rīga, Brīvības iela', 'bijusī Latvijas prezidente'),
        ('06060611666', 'Abdurahman', 'Ibn Hotab', 'M', 'Mecca', 'džins'),
-       ('08078512745', 'Inese', 'Lībiņa-Egnere', 'F', '', ''),
-       ('09090921999', 'Andrejs', 'Bērziņš', 'M', '', ''),
-       ('11119911000', 'Jānis', 'Bērziņš', 'M', '', 'vidējais latvietis'),
-       ('14044811709', 'Ojārs Ēriks', 'Kalniņš', 'M', '', ''),
-       ('17025412789', 'Eva', 'Mārtuža', 'F', '', ''),
-       ('18066912849', 'Dace', 'Rukšāne-Ščipčinska', 'F', '', ''),
-       ('18105110838', 'Janīna', 'Kursīte-Pakule', 'F', '', ''),
-       ('19115511030', 'Boriss', 'Cilēvičs', 'M', 'Rīga', ''),
-       ('22022211234', 'Vizma', 'Puķīte', 'F', '', 'mirusi'),
-       ('22105512976', 'Dagmāra', 'Beitnere-Le Galla', 'F', '', ''),
-       ('28048311758', 'Andrejs', 'Klementjevs', 'M', '', ''),
-       ('30018011290', 'Raivis', 'Dzintars', 'M', '', '');
+       ('08078512745', 'Inese', 'Lībiņa-Egnere', 'F', 'Ādaži', 'Saeimas deputāte'),
+       ('09090921999', 'Andrejs', 'Bērziņš', 'M', 'Talsi', 'pensionārs'),
+       ('11119911000', 'Jānis', 'Bērziņš', 'M', 'Ērgļi', 'vidējais latvietis'),
+       ('14044811709', 'Ojārs Ēriks', 'Kalniņš', 'M', 'Baltezers', 'Saeimas deputāts'),
+       ('17025412789', 'Eva', 'Mārtuža', 'F', 'Saulkrasti', 'Saeimas deputāte'),
+       ('18066912849', 'Dace', 'Rukšāne-Ščipčinska', 'F', 'Ogre', 'Saeimas deputāte'),
+       ('18105110838', 'Janīna', 'Kursīte-Pakule', 'F', 'Salaspils', 'Saeimas deputāte'),
+       ('19115511030', 'Boriss', 'Cilēvičs', 'M', 'Rīga', 'Saeimas deputāts'),
+       ('22022211234', 'Vizma', 'Puķīte', 'F', 'Jūrmala', 'mirusi'),
+       ('22105512976', 'Dagmāra', 'Beitnere-Le Galla', 'F', 'Rīga', 'Saeimas deputāte'),
+       ('28048311758', 'Andrejs', 'Klementjevs', 'M', 'Jūrmala', 'Saeimas deputāts'),
+       ('30018011290', 'Raivis', 'Dzintars', 'M', 'Rīga', 'Saeimas deputāts');
 /*!40000 ALTER TABLE `persons`
     ENABLE KEYS */;
 UNLOCK TABLES;
@@ -72,4 +72,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-31 12:45:25
+-- Dump completed on 2021-04-01 10:56:27
