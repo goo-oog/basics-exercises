@@ -677,6 +677,10 @@ video {
     color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.whitespace-nowrap {
+    white-space: nowrap;
+}
+
 .w-44 {
     width: 11rem;
 }
@@ -839,10 +843,11 @@ th {
     text-align: center;
 }
 
-.table-column-code {
+.table-column-code, .table-column-year {
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: center;
+    white-space: nowrap;
 }
 
 .table-column-name, .table-column-surname, .table-column-address, .table-column-note {

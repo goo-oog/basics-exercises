@@ -55,6 +55,11 @@ class RepositoryService
         return $this->db->getByGender($gender);
     }
 
+    public function getByYear(string $year): array
+    {
+        return $this->db->getByYear($year);
+    }
+
     public function getByAddress(string $address): array
     {
         return $this->db->getByAddress($address);

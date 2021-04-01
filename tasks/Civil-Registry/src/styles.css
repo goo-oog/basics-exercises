@@ -58,8 +58,8 @@ th {
     @apply text-center;
 }
 
-.table-column-code {
-    @apply text-center px-4;
+.table-column-code, .table-column-year {
+    @apply whitespace-nowrap text-center px-4;
 }
 
 .table-column-name, .table-column-surname, .table-column-address, .table-column-note {

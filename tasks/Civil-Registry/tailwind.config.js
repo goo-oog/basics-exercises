@@ -3,7 +3,7 @@ module.exports = {
     './templates/*.twig',
     './src/*.css',
   ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     extend: {},
   },

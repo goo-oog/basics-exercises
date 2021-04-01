@@ -37,6 +37,12 @@ interface PersonsRepository
     public function getByGender(string $gender): array;
 
     /**
+     * @param string $year
+     * @return Person[]
+     */
+    public function getByYear(string $year): array;
+
+    /**
      * @param string $address
      * @return Person[]
      */

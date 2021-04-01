@@ -16,12 +16,12 @@ class AppController
 
     public function showMainPage(): void
     {
-        $this->personsService->showMainPage();
+        echo $this->personsService->showMainPage();
     }
 
     public function showEditAddressForm(): void
     {
-        $this->personsService->showEditAddressForm();
+        echo $this->personsService->showEditAddressForm();
     }
 
     public function editAddress(): void
@@ -31,7 +31,7 @@ class AppController
 
     public function showEditNoteForm(): void
     {
-        $this->personsService->showEditNoteForm();
+        echo $this->personsService->showEditNoteForm();
     }
 
     public function editNote(): void
@@ -46,7 +46,7 @@ class AppController
 
     public function showAddPersonForm(): void
     {
-        $this->personsService->showAddPersonForm();
+        echo $this->personsService->showAddPersonForm();
     }
 
     public function addPerson(): void

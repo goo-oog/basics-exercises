@@ -21,7 +21,7 @@ class PersonsDataManagementService
         $this->twigVariables['db'] = $this->db;
     }
 
-    public function showMainPage(): void
+    public function showMainPage(): string
     {
         unset($_SESSION['memory']);
         if (isset($_GET['search'])) {
@@ -44,6 +44,9 @@ class PersonsDataManagementService
                     }
                     $searchResult = $this->db->getByGender($query);
                     break;
+                case 'year':
+                    $searchResult = $this->db->getByYear($query);
+                    break;
                 case 'address':
                     $searchResult = $this->db->getByAddress(($query));
             }
@@ -51,28 +54,28 @@ class PersonsDataManagementService
             $searchResult = $this->db->getAll();
         }
         $this->twigVariables['persons'] = $searchResult;
-        echo $this->twig->environment()->render('_main-page.twig', $this->twigVariables);
+        return $this->twig->environment()->render('_main-page.twig', $this->twigVariables);
     }
 
-    public function showEditAddressForm(): void
+    public function showEditAddressForm(): string
     {
-        echo $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
+        return $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
     }
 
     public function editAddress(): void
     {
-        $this->db->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['address'], $_POST['note']));
+        $this->db->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], $_POST['note']));
         header('Location:/');
     }
 
-    public function showEditNoteForm(): void
+    public function showEditNoteForm(): string
     {
-        echo $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
+        return $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
     }
 
     public function editNote(): void
     {
-        $this->db->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['address'], $_POST['note']));
+        $this->db->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], $_POST['note']));
         header('Location:/');
     }
 
@@ -82,9 +85,9 @@ class PersonsDataManagementService
         header('Location:/');
     }
 
-    public function showAddPersonForm(): void
+    public function showAddPersonForm(): string
     {
-        echo $this->twig->environment()->render('_add-person.twig', $this->twigVariables);
+        return $this->twig->environment()->render('_add-person.twig', $this->twigVariables);
     }
 
     public function addPerson(): void
@@ -94,11 +97,13 @@ class PersonsDataManagementService
                 if (preg_match('/^[a-zāčēģīķļņšūž]+(?:[[:space:]][a-zāčēģīķļņšūž]+)*$/iuU', $_POST['name'])) {
                     if (preg_match('/^[a-zāčēģīķļņšūž]+(?:[-[:space:]][a-zāčēģīķļņšūž]+)*$/iuU', $_POST['surname'])) {
                         if ($_POST['gender'] === 'M' || $_POST['gender'] === 'F') {
+                            $code = str_replace('-', '', $_POST['code']);
                             $this->db->addPerson(new Person(
-                                str_replace('-', '', $_POST['code']),
+                                $code,
                                 mb_convert_case($_POST['name'], MB_CASE_TITLE),
                                 mb_convert_case($_POST['surname'], MB_CASE_TITLE),
                                 $_POST['gender'],
+                                ($code[6] == 1 ? '19' : '20') . substr($code, 4, 2),
                                 $_POST['address'],
                                 $_POST['note']));
                         } else {

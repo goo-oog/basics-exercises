@@ -21,6 +21,8 @@
 
         <input type="hidden" id="gender" name="gender"
                value="{{ db.getByCode(POST.code)[0].gender() }}"/>
+        <input type="hidden" id="year" name="year"
+               value="{{ db.getByCode(POST.code)[0].year() }}"/>
         <input type="hidden" id="note" name="note"
                value="{{ db.getByCode(POST.code)[0].note() }}"/>
         <br><br>
