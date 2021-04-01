@@ -1,6 +1,6 @@
 module.exports = {
   purge: [
-    './public/*.php',
+    './templates/*.twig',
     './src/*.css',
   ],
   darkMode: false, // or 'media' or 'class'
