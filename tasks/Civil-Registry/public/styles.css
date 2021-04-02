@@ -619,10 +619,6 @@ video {
     margin-right: auto;
 }
 
-.ml-2 {
-    margin-left: 0.5rem;
-}
-
 .mr-auto {
     margin-right: auto;
 }
@@ -644,6 +640,10 @@ video {
 .px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.pl-2 {
+    padding-left: 0.5rem;
 }
 
 * {
@@ -866,6 +866,7 @@ label {
     font-size: 1.125rem;
     line-height: 1.75rem;
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
     padding-left: 0.5rem;
     width: 20rem;
 }
@@ -885,6 +886,7 @@ label {
     font-size: 1.125rem;
     line-height: 1.75rem;
     margin-left: 0.5rem;
+    margin-right: 0.5rem;
     width: 12rem;
 }
 
@@ -892,6 +894,8 @@ label {
     height: 1.75rem;
     font-size: 1.125rem;
     line-height: 1.75rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     width: 20rem;
 }
 

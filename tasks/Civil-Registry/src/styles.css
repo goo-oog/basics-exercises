@@ -71,7 +71,7 @@ label {
 }
 
 .text-input {
-    @apply text-lg w-80 h-7 ml-2 pl-2;
+    @apply text-lg w-80 h-7 pl-2 mx-2;
 }
 
 .text-input:read-only {
@@ -79,11 +79,11 @@ label {
 }
 
 .search-select {
-    @apply text-lg w-48 h-7 ml-2;
+    @apply text-lg w-48 h-7 mx-2;
 }
 
 .add-person-gender {
-    @apply text-lg w-80 h-7;
+    @apply text-lg w-80 h-7 mx-2;
 }
 
 .button-blue, .button-green {
