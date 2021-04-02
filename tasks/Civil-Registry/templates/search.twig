@@ -3,7 +3,7 @@
     <form method="get">
         <label for="query">Ko meklēt:</label>
         <input type="text" class="text-input" id="query" name="query"
-               value="{% if GET.query is defined %}{{ GET.query }}{% endif %}"/>
+               value="{{ GET.query ?? '' }}"/>
         <label for="column">Meklēšanas kritērijs:</label>
         <select class="search-select" id="column" name="search">
             <option value="code" {% if GET.search is defined and GET.search == 'code' %}selected{% endif %}>

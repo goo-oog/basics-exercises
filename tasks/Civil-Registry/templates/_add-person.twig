@@ -1,20 +1,20 @@
 {% include 'header.twig' %}
 <br>
 <h2>Pievienot personu</h2>
-<h4 class="error-message">{% if SESSION.memory.message is defined %}{{ SESSION.memory.message }}{% endif %}</h4>
+<h4 class="error-message">{{ SESSION.memory.message ?? '' }}</h4>
 <div class="add-person">
     <form method="post" action="/add/execute">
         <label for="code">Personas kods:</label>
         <input type="text" class="text-input" id="code" name="code"
-               value="{% if SESSION.memory.code is defined %}{{ SESSION.memory.code }}{% endif %}"/>
+               value="{{ SESSION.memory.code ?? '' }}"/>
         <br><br>
         <label for="name">Vārds:</label>
         <input type="text" class="text-input" id="name" name="name"
-               value="{% if SESSION.memory.name is defined %}{{ SESSION.memory.name }}{% endif %}"/>
+               value="{{ SESSION.memory.name ?? '' }}"/>
         <br><br>
         <label for="surname">Uzvārds:</label>
         <input type="text" class="text-input" id="surname" name="surname"
-               value="{% if SESSION.memory.surname is defined %}{{ SESSION.memory.surname }}{% endif %}"/>
+               value="{{ SESSION.memory.surname ?? '' }}"/>
         <br><br>
         <label for="gender">Dzimums:</label>
         <select class="add-person-gender" id="gender" name="gender">
@@ -30,11 +30,11 @@
         <br><br>
         <label for="address">Adrese:</label>
         <input type="text" class="text-input" id="address" name="address"
-               value="{% if SESSION.memory.address is defined %}{{ SESSION.memory.address }}{% endif %}"/>
+               value="{{ SESSION.memory.address ?? '' }}"/>
         <br><br>
         <label for="note">Piezīmes:</label>
         <input type="text" class="text-input" id="note" name="note"
-               value="{% if SESSION.memory.note is defined %}{{ SESSION.memory.note }}{% endif %}"/>
+               value="{{ SESSION.memory.note ?? '' }}"/>
         <br><br>
         <p>
             <input type="submit" class="button-green" value="Pievienot">
