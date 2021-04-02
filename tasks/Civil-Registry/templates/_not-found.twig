@@ -1,7 +1,8 @@
-{% include 'header.twig' %}
-<br>
-<div class="container-shaded">
-    <h3>Šāda lapa neeksistē</h3>
-</div>
-{% include 'home-button.twig' %}
-{% include 'footer.twig' %}
+{% extends 'base.twig' %}
+{% block main %}
+    <br>
+    <div class="container-shaded">
+        <h3>Šāda lapa neeksistē</h3>
+    </div>
+{% endblock %}
+{% block button %}{% include 'home-button.twig' %}{% endblock %}

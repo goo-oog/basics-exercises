@@ -1,35 +1,36 @@
-{% include 'header.twig' %}
-<br>
-<h2>Labot piezīmi</h2>
-<div class="edit-note">
-    <form method="post" action="/edit-note/execute">
-        <label for="code">Personas kods:</label>
-        <input type="text" class="text-input" id="code" name="code"
-               value="{{ db.getByCode(POST.code)[0].code }}" readonly/>
-        <br><br>
-        <label for="name">Vārds:</label>
-        <input type="text" class="text-input" id="name" name="name"
-               value="{{ db.getByCode(POST.code)[0].name }}" readonly/>
-        <br><br>
-        <label for="surname">Uzvārds:</label>
-        <input type="text" class="text-input" id="surname" name="surname"
-               value="{{ db.getByCode(POST.code)[0].surname }}" readonly/>
-        <br><br>
-        <label for="note">Piezīmes</label>
-        <input type="text" class="text-input" id="note" name="note"
-               value="{{ db.getByCode(POST.code)[0].note }}"/>
+{% extends 'base.twig' %}
+{% block main %}
+    <br>
+    <h2>Labot piezīmi</h2>
+    <div class="edit-note">
+        <form method="post" action="/edit-note/execute">
+            <label for="code">Personas kods:</label>
+            <input type="text" class="text-input" id="code" name="code"
+                   value="{{ db.getByCode(POST.code)[0].code }}" readonly/>
+            <br><br>
+            <label for="name">Vārds:</label>
+            <input type="text" class="text-input" id="name" name="name"
+                   value="{{ db.getByCode(POST.code)[0].name }}" readonly/>
+            <br><br>
+            <label for="surname">Uzvārds:</label>
+            <input type="text" class="text-input" id="surname" name="surname"
+                   value="{{ db.getByCode(POST.code)[0].surname }}" readonly/>
+            <br><br>
+            <label for="note">Piezīmes</label>
+            <input type="text" class="text-input" id="note" name="note"
+                   value="{{ db.getByCode(POST.code)[0].note }}"/>
 
-        <input type="hidden" id="gender" name="gender"
-               value="{{ db.getByCode(POST.code)[0].gender }}"/>
-        <input type="hidden" id="year" name="year"
-               value="{{ db.getByCode(POST.code)[0].year }}"/>
-        <input type="hidden" id="address" name="address"
-               value="{{ db.getByCode(POST.code)[0].address }}"/>
-        <br><br>
-        <p>
-            <input type="submit" class="button-green" value="Labot">
-        </p>
-    </form>
-</div>
-{% include 'home-button.twig' %}
-{% include 'footer.twig' %}
+            <input type="hidden" id="gender" name="gender"
+                   value="{{ db.getByCode(POST.code)[0].gender }}"/>
+            <input type="hidden" id="year" name="year"
+                   value="{{ db.getByCode(POST.code)[0].year }}"/>
+            <input type="hidden" id="address" name="address"
+                   value="{{ db.getByCode(POST.code)[0].address }}"/>
+            <br><br>
+            <p>
+                <input type="submit" class="button-green" value="Labot">
+            </p>
+        </form>
+    </div>
+{% endblock %}
+{% block button %}{% include 'home-button.twig' %}{% endblock %}
