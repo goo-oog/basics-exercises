@@ -8,45 +8,12 @@ use Registry\App\Models\Person;
 interface PersonsRepository
 {
     /**
+     * @param string $subject
+     * @param string $value
+     * @param string $orderBy
      * @return Person[]
      */
-    public function getAll(): array;
-
-    /**
-     * @param string $code
-     * @return Person[]
-     */
-    public function getByCode(string $code): array;
-
-    /**
-     * @param string $name
-     * @return Person[]
-     */
-    public function getByName(string $name): array;
-
-    /**
-     * @param string $surname
-     * @return Person[]
-     */
-    public function getBySurname(string $surname): array;
-
-    /**
-     * @param string $gender
-     * @return Person[]
-     */
-    public function getByGender(string $gender): array;
-
-    /**
-     * @param string $year
-     * @return Person[]
-     */
-    public function getByYear(string $year): array;
-
-    /**
-     * @param string $address
-     * @return Person[]
-     */
-    public function getByAddress(string $address): array;
+    public function search(string $subject, string $value, string $orderBy): array;
 
     public function addPerson(Person $person): void;
 

@@ -25,7 +25,7 @@ class PersonsDataManagementService
     {
         unset($_SESSION['memory']);
         if (isset($_GET['search'])) {
-            $query = mb_convert_case(($_GET['query'] === '' ? '%' : $_GET['query']), MB_CASE_LOWER);
+            $query = mb_convert_case($_GET['query'], MB_CASE_LOWER);
             switch ($_GET['search']) {
                 case 'code':
                     $searchResult = $this->db->getByCode($query);
@@ -49,6 +49,9 @@ class PersonsDataManagementService
                     break;
                 case 'address':
                     $searchResult = $this->db->getByAddress(($query));
+                    break;
+                case 'note':
+                    $searchResult = $this->db->getByNote(($query));
             }
         } else {
             $searchResult = $this->db->getAll();

@@ -31,59 +31,14 @@ class MySQLPersonsRepository implements PersonsRepository
     }
 
     /**
+     * @param string $subject
+     * @param string $value
+     * @param string $orderBy
      * @return Person[]
      */
-    public function getAll(): array
+    public function search(string $subject, string $value, string $orderBy): array
     {
-        return $this->pdo->query('SELECT * FROM persons ORDER BY surname')
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    /**
-     * @param string $code
-     * @return Person[]
-     */
-    public function getByCode(string $code): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE code LIKE '$code' ORDER BY code")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    /**
-     * @param string $name
-     * @return Person[]
-     */
-    public function getByName(string $name): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE name LIKE '$name' ORDER BY name")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    /**
-     * @param string $surname
-     * @return Person[]
-     */
-    public function getBySurname(string $surname): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE surname LIKE '$surname' ORDER BY surname")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    public function getByGender(string $gender): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE gender LIKE '$gender' ORDER BY gender,surname")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    public function getByYear(string $year): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE year LIKE '$year' ORDER BY year,surname")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
-    }
-
-    public function getByAddress(string $address): array
-    {
-        return $this->pdo->query("SELECT * FROM persons WHERE address LIKE '$address' ORDER BY address")
+        return $this->pdo->query("SELECT * FROM persons WHERE $subject LIKE '%$value%' ORDER BY $orderBy")
             ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
     }
 
