@@ -1,10 +1,6 @@
 {
   "name": "gints/registry",
   "description": "Civil registry",
-  "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "phpunit/phpunit": "^9.5"
-  },
   "require": {
     "ext-pdo": "*",
     "nikic/fast-route": "^1.3",
@@ -13,9 +9,17 @@
     "vlucas/phpdotenv": "^5.3",
     "twig/twig": "^3.3"
   },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "^9.5"
+  },
   "autoload": {
     "psr-4": {
-      "Registry\\App\\": "app/",
+      "Registry\\App\\": "app/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Registry\\Tests\\": "tests/"
     }
   }
