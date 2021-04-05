@@ -27,7 +27,7 @@ class PersonsDataManagementService
     {
         unset($_SESSION['memory']);
         if (isset($_GET['search'])) {
-            $query = mb_convert_case($_GET['query'], MB_CASE_LOWER);
+            $query = '%' . $_GET['query'] . '%';
             switch ($_GET['search']) {
                 case 'code':
                     $searchResult = $this->db->getByCode($query);

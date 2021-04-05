@@ -35,7 +35,7 @@ CREATE TABLE `persons`
     UNIQUE KEY `register_code_uindex` (`code`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci;
+  COLLATE = utf8mb4_0900_as_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

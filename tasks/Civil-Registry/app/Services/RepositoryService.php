@@ -20,7 +20,7 @@ class RepositoryService
      */
     public function getAll(): array
     {
-        return $this->db->search('code', '', 'surname,name');
+        return $this->db->search('code', '%', 'surname,name');
     }
 
     /**
