@@ -8,12 +8,14 @@ use Registry\App\Models\Person;
 class PersonsDataManagementService
 {
     private RepositoryService $db;
+    private ValidationService $validate;
     private TwigService $twig;
     private array $twigVariables = [];
 
     public function __construct(RepositoryService $repositoryService)
     {
         $this->db = $repositoryService;
+        $this->validate = new ValidationService();
         $this->twig = new TwigService();
         $this->twigVariables['GET'] = $_GET;
         $this->twigVariables['POST'] = $_POST;
@@ -67,7 +69,7 @@ class PersonsDataManagementService
 
     public function editAddress(): void
     {
-        $this->db->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], $_POST['note']));
+        $this->db->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], trim($_POST['address']), $_POST['note']));
         header('Location:/');
     }
 
@@ -78,13 +80,15 @@ class PersonsDataManagementService
 
     public function editNote(): void
     {
-        $this->db->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], $_POST['note']));
+        $this->db->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], trim($_POST['note'])));
         header('Location:/');
     }
 
     public function deletePerson(): void
     {
-        $this->db->deletePerson($this->db->getByCode($_POST['code'])[0]);
+        if ($this->validate->code($_POST['code']) && $this->db->getByCode($_POST['code'])) {
+            $this->db->deletePerson($this->db->getByCode($_POST['code'])[0]);
+        }
         header('Location:/');
     }
 
@@ -95,11 +99,11 @@ class PersonsDataManagementService
 
     public function addPerson(): void
     {
-        if (!$this->db->getByCode(str_replace('-', '', $_POST['code']))) {
-            if (preg_match('/^\d{6}-?\d{5}$/', $_POST['code'])) {
-                if (preg_match('/^[a-zāčēģīķļņšūž]+(?:[[:space:]][a-zāčēģīķļņšūž]+)*$/iuU', $_POST['name'])) {
-                    if (preg_match('/^[a-zāčēģīķļņšūž]+(?:[-[:space:]][a-zāčēģīķļņšūž]+)*$/iuU', $_POST['surname'])) {
-                        if ($_POST['gender'] === 'M' || $_POST['gender'] === 'F') {
+        if (!$this->db->getByCode($_POST['code'])) {
+            if ($this->validate->code($_POST['code'])) {
+                if ($this->validate->name($_POST['name'])) {
+                    if ($this->validate->surname($_POST['surname'])) {
+                        if ($this->validate->gender($_POST['gender'])) {
                             $code = str_replace('-', '', $_POST['code']);
                             $this->db->addPerson(new Person(
                                 $code,
@@ -107,8 +111,8 @@ class PersonsDataManagementService
                                 mb_convert_case($_POST['surname'], MB_CASE_TITLE),
                                 $_POST['gender'],
                                 ($code[6] == 1 ? '19' : '20') . substr($code, 4, 2),
-                                $_POST['address'],
-                                $_POST['note']));
+                                trim($_POST['address']),
+                                trim($_POST['note'])));
                         } else {
                             $message = "Dzimumam jābūt 'vīrietis' vai 'sieviete'!";
                         }

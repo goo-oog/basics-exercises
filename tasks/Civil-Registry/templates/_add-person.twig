@@ -20,10 +20,10 @@
             <label for="gender">Dzimums:</label>
             <select class="add-person-gender" id="gender" name="gender">
                 <option value=""></option>
-            <option value="M"
-                    {% if SESSION.memory.gender is defined and SESSION.memory.gender=='M' %}selected{% endif %}
-            >vīrietis
-            </option>
+                <option value="M"
+                        {% if SESSION.memory.gender is defined and SESSION.memory.gender=='M' %}selected{% endif %}>
+                    vīrietis
+                </option>
                 <option value="F"
                         {% if SESSION.memory.gender is defined and SESSION.memory.gender=='F' %}selected{% endif %}>
                     sieviete
