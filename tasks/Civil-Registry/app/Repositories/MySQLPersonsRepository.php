@@ -38,8 +38,9 @@ class MySQLPersonsRepository implements PersonsRepository
      */
     public function search(string $subject, string $value, string $orderBy): array
     {
-        return $this->pdo->query("SELECT * FROM persons WHERE $subject LIKE '$value' ORDER BY $orderBy")
-            ->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
+        $stmt = $this->pdo->prepare("SELECT * FROM persons WHERE $subject LIKE :value ORDER BY $orderBy");
+        $stmt->execute(['value' => $value]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, Person::class, ['code', 'name', 'surname', 'gender', 'year', 'address', 'note']);
     }
 
     public function addPerson(Person $person): void
