@@ -11,13 +11,15 @@ use Registry\App\Repositories\MySQLTokensRepository;
 use Registry\App\Repositories\PersonsRepository;
 use Registry\App\Repositories\TokensRepository;
 use Registry\App\Services\AppMainService;
+use Registry\App\Services\MySQLService;
 use Registry\App\Services\PersonsRepositoryService;
 
 session_start();
 
 $container = new Container();
-$container->add(PersonsRepository::class, MySQLPersonsRepository::class);
-$container->add(TokensRepository::class, MySQLTokensRepository::class);
+$container->add(MySQLService::class, MySQLService::class);
+$container->add(PersonsRepository::class, MySQLPersonsRepository::class)->addArgument(MySQLService::class);
+$container->add(TokensRepository::class, MySQLTokensRepository::class)->addArgument(MySQLService::class);
 $container->add(PersonsRepositoryService::class)->addArgument(PersonsRepository::class);
 $container->add(AppMainService::class)->addArguments([PersonsRepositoryService::class, TokensRepository::class]);
 $container->add(AppController::class)->addArgument(AppMainService::class);
