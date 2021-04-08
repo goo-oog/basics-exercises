@@ -6,7 +6,7 @@ namespace Registry\App\Services;
 use Registry\App\Models\Person;
 use Registry\App\Repositories\TokensRepository;
 
-class PersonsDataManagementService
+class AppMainService
 {
     private PersonsRepositoryService $personsDB;
     private PersonsDataValidationService $validate;

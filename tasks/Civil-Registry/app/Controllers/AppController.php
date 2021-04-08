@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Registry\App\Controllers;
 
-use Registry\App\Services\PersonsDataManagementService;
+use Registry\App\Services\AppMainService;
 
 class AppController
 {
-    private PersonsDataManagementService $personsService;
+    private AppMainService $personsService;
 
-    public function __construct(PersonsDataManagementService $personsService)
+    public function __construct(AppMainService $personsService)
     {
         $this->personsService = $personsService;
     }

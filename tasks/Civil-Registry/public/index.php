@@ -10,7 +10,7 @@ use Registry\App\Repositories\MySQLPersonsRepository;
 use Registry\App\Repositories\MySQLTokensRepository;
 use Registry\App\Repositories\PersonsRepository;
 use Registry\App\Repositories\TokensRepository;
-use Registry\App\Services\PersonsDataManagementService;
+use Registry\App\Services\AppMainService;
 use Registry\App\Services\PersonsRepositoryService;
 
 session_start();
@@ -19,8 +19,8 @@ $container = new Container();
 $container->add(PersonsRepository::class, MySQLPersonsRepository::class);
 $container->add(TokensRepository::class, MySQLTokensRepository::class);
 $container->add(PersonsRepositoryService::class)->addArgument(PersonsRepository::class);
-$container->add(PersonsDataManagementService::class)->addArguments([PersonsRepositoryService::class, TokensRepository::class]);
-$container->add(AppController::class)->addArgument(PersonsDataManagementService::class);
+$container->add(AppMainService::class)->addArguments([PersonsRepositoryService::class, TokensRepository::class]);
+$container->add(AppController::class)->addArgument(AppMainService::class);
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->get('/', [AppController::class, 'showMainPage']);
