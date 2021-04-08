@@ -22,6 +22,10 @@ $container->add(AppController::class)->addArgument(PersonsDataManagementService:
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->get('/', [AppController::class, 'showMainPage']);
     $r->get('/add', [AppController::class, 'showAddPersonForm']);
+    $r->get('/login', [AppController::class, 'login']);
+    $r->post('/logout', [AppController::class, 'logout']);
+    $r->post('/login', [AppController::class, 'loginVerify']);
+    $r->get('/dashboard', [AppController::class, 'dashboard']);
     $r->post('/add/execute', [AppController::class, 'addPerson']);
     $r->post('/edit-address', [AppController::class, 'showEditAddressForm']);
     $r->post('/edit-address/execute', [AppController::class, 'editAddress']);

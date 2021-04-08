@@ -64,7 +64,10 @@ class PersonsDataManagementService
 
     public function showEditAddressForm(): string
     {
-        return $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
+        if ($this->checkAuth()) {
+            return $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
+        }
+        header('Location:/login');
     }
 
     public function editAddress(): void
@@ -75,7 +78,10 @@ class PersonsDataManagementService
 
     public function showEditNoteForm(): string
     {
-        return $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
+        if ($this->checkAuth()) {
+            return $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
+        }
+        header('Location:/login');
     }
 
     public function editNote(): void
@@ -86,15 +92,21 @@ class PersonsDataManagementService
 
     public function deletePerson(): void
     {
-        if ($this->validate->code($_POST['code']) && $this->db->getByCode($_POST['code'])) {
-            $this->db->deletePerson($this->db->getByCode($_POST['code'])[0]);
+        if ($this->checkAuth()) {
+            if ($this->validate->code($_POST['code']) && $this->db->getByCode($_POST['code'])) {
+                $this->db->deletePerson($this->db->getByCode($_POST['code'])[0]);
+            }
+            header('Location:/');
         }
-        header('Location:/');
+        header('Location:/login');
     }
 
     public function showAddPersonForm(): string
     {
-        return $this->twig->environment()->render('_add-person.twig', $this->twigVariables);
+        if ($this->checkAuth()) {
+            return $this->twig->environment()->render('_add-person.twig', $this->twigVariables);
+        }
+        return $this->login();
     }
 
     public function addPerson(): void
@@ -144,5 +156,52 @@ class PersonsDataManagementService
         } else {
             header('Location:/');
         }
+    }
+
+    public function checkAuth(): bool
+    {
+        if (isset($_SESSION['auth_id'])) {
+            if ($this->db->searchByToken($_SESSION['auth_id'])) {
+                return true;
+            }
+            $this->db->invalidateToken($_SESSION['auth_id']);
+        }
+        unset($_SESSION['auth_id']);
+        $this->twigVariables['SESSION'] = $_SESSION;
+        return false;
+    }
+
+    public function login(): string
+    {
+        return $this->twig->environment()->render('_login-logout.twig', $this->twigVariables);
+    }
+
+    public function logout(): void
+    {
+        $this->db->invalidateToken($_SESSION['auth_id']);
+        unset($_SESSION['auth_id']);
+        header('Location:/');
+    }
+
+    public function loginVerify(): void
+    {
+        $code = str_replace('-', '', $_POST['code']);
+        if ($this->db->getByCode($code)) {
+            $token = password_hash($code, PASSWORD_BCRYPT);
+            $this->db->addToken($code, $token);
+            $_SESSION['auth_id'] = $token;
+            header('Location:/dashboard');
+        } else {
+            header('Location:/login');
+        }
+    }
+
+    public function dashboard(): string
+    {
+        $this->twigVariables['message'] =
+            $this->db->getByCode($this->db->searchByToken($_SESSION['auth_id']))[0]->name()
+            . ' '
+            . $this->db->getByCode($this->db->searchByToken($_SESSION['auth_id']))[0]->surname();
+        return $this->twig->environment()->render('_dashboard.twig', $this->twigVariables);
     }
 }

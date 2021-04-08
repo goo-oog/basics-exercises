@@ -53,4 +53,24 @@ class AppController
     {
         $this->personsService->addPerson();
     }
+
+    public function login(): string
+    {
+        return $this->personsService->login();
+    }
+
+    public function logout(): void
+    {
+        $this->personsService->logout();
+    }
+
+    public function loginVerify(): void
+    {
+        $this->personsService->loginVerify();
+    }
+
+    public function dashboard(): string
+    {
+        return $this->personsService->dashboard();
+    }
 }

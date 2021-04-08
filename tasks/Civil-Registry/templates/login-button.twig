@@ -1,0 +1,9 @@
+<br>
+<div class="container-shaded">
+    <form action="/login" method="get">
+        <input type="submit"
+               value="{% if SESSION.auth_id is defined %}Pārtraukt sesiju{% else %}Autorizēties{% endif %}"
+               class="button-blue"/>
+    </form>
+</div>
+

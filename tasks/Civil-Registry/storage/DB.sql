@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
--- Host: localhost    Database: registry
+-- Host: 127.0.0.1    Database: registry
 -- ------------------------------------------------------
 -- Server version	8.0.23
 
@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `persons`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `persons`
 (
-    `code`    varchar(11) NOT NULL,
-    `name`    varchar(63) NOT NULL,
-    `surname` varchar(63) NOT NULL,
-    `gender`  varchar(1)  NOT NULL,
-    `year`    varchar(4)    DEFAULT '',
-    `address` varchar(63)   DEFAULT '',
-    `note`    varchar(4095) DEFAULT '',
+    `code`    varchar(11) COLLATE utf8mb4_0900_as_ci NOT NULL,
+    `name`    varchar(63) COLLATE utf8mb4_0900_as_ci NOT NULL,
+    `surname` varchar(63) COLLATE utf8mb4_0900_as_ci NOT NULL,
+    `gender`  varchar(1) COLLATE utf8mb4_0900_as_ci  NOT NULL,
+    `year`    varchar(4) COLLATE utf8mb4_0900_as_ci    DEFAULT '',
+    `address` varchar(63) COLLATE utf8mb4_0900_as_ci   DEFAULT '',
+    `note`    varchar(4095) COLLATE utf8mb4_0900_as_ci DEFAULT '',
     PRIMARY KEY (`code`),
     UNIQUE KEY `register_code_uindex` (`code`)
 ) ENGINE = InnoDB
@@ -63,6 +63,46 @@ VALUES ('01123713987', 'Vaira', 'Vīķe-Freiberga', 'F', '1937', 'Rīga, Brīvī
 /*!40000 ALTER TABLE `persons`
     ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `tokens`
+--
+
+DROP TABLE IF EXISTS `tokens`;
+/*!40101 SET @saved_cs_client = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tokens`
+(
+    `code`  varchar(11) COLLATE utf8mb4_0900_as_ci  DEFAULT NULL,
+    `token` varchar(100) COLLATE utf8mb4_0900_as_ci DEFAULT NULL,
+    `time`  int                                     DEFAULT NULL,
+    `valid` tinyint(1)                              DEFAULT '1'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_as_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tokens`
+--
+
+LOCK TABLES `tokens` WRITE;
+/*!40000 ALTER TABLE `tokens`
+    DISABLE KEYS */;
+INSERT INTO `tokens`
+VALUES ('06060611666', '$2y$10$05d1KaKd3WQ78nDni4q5k.nCoElQIKdaAgqR0rZFpWhplrQ3OlTVW', 1617885782, 0),
+       ('06060611666', '$2y$10$dKHORKSU3BEhfILHj5LQIu81XWfbfMSirf/Qf6WQh4NWTpf3NoO2W', 1617886574, 0),
+       ('06060611666', '$2y$10$s.ehCO51mERD49FIUxLNeeM2zTeFMERy596xqOQsNMDnttCQYrHDG', 1617887001, 0),
+       ('06060611666', '$2y$10$81OjY.mPKes8Y8nf22KY5OUhZWhz4mrVhKgvq8/zTXSraRa8NAcT.', 1617887623, 0),
+       ('06060611666', '$2y$10$R2cKLs5C0SO8H2v25tuL/ORhe0zTZ/eviqtygT6cQ4SRvDweN88yG', 1617888067, 0),
+       ('06060611666', '$2y$10$U9sZs6vI9KZ1YdYY.lUqiei/f.q1XrP.T5F8Tqdm1byDQz0Ry7Q1C', 1617888085, 0),
+       ('06060611666', '$2y$10$GxVI07bntZJYGS1BSPUz6eALZPwx1JKatvYs909.tkJutgaLdqS62', 1617888403, 0),
+       ('06060611666', '$2y$10$8WypJ1IxXoFb4j18uLrzA.fydd7U7yJW2H6eF/xR/hcj7Ra0cS9Zu', 1617888682, 0),
+       ('06060611666', '$2y$10$/y7XmjwJ4B/akVlv5kYPfuc0JMJ5yr9HpA5cXhOhAEARBsEfLHUx.', 1617888961, 0),
+       ('06060611666', '$2y$10$jQpMPGJZBQ8oAsoZNQz4FO5urJ46PvdU323q9LJ2ZR6tXLbDR5JvW', 1617889069, 0);
+/*!40000 ALTER TABLE `tokens`
+    ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE = @OLD_SQL_MODE */;
@@ -73,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES = @OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-01 19:41:10
+-- Dump completed on 2021-04-08 16:57:40

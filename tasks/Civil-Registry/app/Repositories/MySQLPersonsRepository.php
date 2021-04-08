@@ -63,4 +63,24 @@ class MySQLPersonsRepository implements PersonsRepository
     {
         $this->pdo->prepare("UPDATE persons SET address='{$person->address()}' WHERE code='{$person->code()}'")->execute();
     }
+
+    public function addToken(string $code, string $token): void
+    {
+        $this->pdo->prepare('INSERT INTO tokens (code, token,time) VALUES (?,?,?)')
+            ->execute([$code, $token, time()]);
+    }
+
+    public function searchByToken($token): ?string
+    {
+        $time = time() - 60;
+        $this->pdo->prepare("UPDATE tokens SET valid=0 WHERE time<$time")->execute();
+        $stmt = $this->pdo->prepare('SELECT code FROM tokens WHERE token LIKE :token and valid=1 ORDER BY time DESC LIMIT 1');
+        $stmt->execute(['token' => $token]);
+        return $stmt->fetch(PDO::FETCH_NUM)[0] ?? '';
+    }
+
+    public function invalidateToken($token): void
+    {
+        $this->pdo->prepare("UPDATE tokens SET valid=0 WHERE token='$token'")->execute();
+    }
 }
