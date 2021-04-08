@@ -4,7 +4,7 @@
     <div class="container-shaded">
         {% if SESSION.auth_id is defined %}
             <form method="post" action="/logout">
-                <input type="submit" class="button-blue" id="submit" value="Izlogoties">
+                <input type="submit" class="button-blue" id="submit" value="Pārtraukt sesiju">
             </form>
         {% else %}
             <h3>Lietotāja identifikācija</h3>
@@ -13,7 +13,7 @@
                 <label for="code">Personas kods:</label>
                 <input type="text" class="text-input" id="code" name="code">
                 <br><br>
-                <input type="submit" class="button-green" id="submit" value="Ielogoties">
+                <input type="submit" class="button-green" id="submit" value="Autorizēties">
             </form>
         {% endif %}
     </div>

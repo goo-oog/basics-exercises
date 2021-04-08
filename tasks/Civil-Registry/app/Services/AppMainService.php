@@ -197,18 +197,18 @@ class AppMainService
             $token = password_hash($code, PASSWORD_BCRYPT);
             $this->tokensDB->addToken($code, $token);
             $_SESSION['auth_id'] = $token;
-            header('Location:/dashboard');
+            header('Location:/auth-success');
         } else {
             header('Location:/login');
         }
     }
 
-    public function dashboard(): string
+    public function authorizationSuccessful(): string
     {
         $this->twigVariables['message'] =
             $this->personsDB->getByCode($this->tokensDB->searchByToken($_SESSION['auth_id']))[0]->name()
             . ' '
             . $this->personsDB->getByCode($this->tokensDB->searchByToken($_SESSION['auth_id']))[0]->surname();
-        return $this->twig->environment()->render('_dashboard.twig', $this->twigVariables);
+        return $this->twig->environment()->render('_auth-success.twig', $this->twigVariables);
     }
 }

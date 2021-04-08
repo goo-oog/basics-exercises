@@ -28,7 +28,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->get('/login', [AppController::class, 'login']);
     $r->post('/logout', [AppController::class, 'logout']);
     $r->post('/login', [AppController::class, 'loginVerify']);
-    $r->get('/dashboard', [AppController::class, 'dashboard']);
+    $r->get('/auth-success', [AppController::class, 'authorizationSuccessful']);
     $r->post('/add/execute', [AppController::class, 'addPerson']);
     $r->post('/edit-address', [AppController::class, 'showEditAddressForm']);
     $r->post('/edit-address/execute', [AppController::class, 'editAddress']);

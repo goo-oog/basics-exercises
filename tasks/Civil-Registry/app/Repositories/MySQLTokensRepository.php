@@ -37,7 +37,7 @@ class MySQLTokensRepository implements TokensRepository
 
     public function searchByToken($token): ?string
     {
-        $time = time() - 60;
+        $time = time() - 900;
         $this->pdo->prepare("UPDATE tokens SET valid=0 WHERE time<$time")->execute();
         $stmt = $this->pdo->prepare('SELECT code FROM tokens WHERE token LIKE :token and valid=1 ORDER BY time DESC LIMIT 1');
         $stmt->execute(['token' => $token]);

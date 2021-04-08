@@ -7,11 +7,11 @@ body {
 }
 
 .container-page {
-    @apply flex justify-center;
+    @apply flex justify-center min-w-min;
 }
 
 .container-shaded, .add-person, .edit-address, .edit-note {
-    @apply mx-auto justify-center bg-blue-50 px-4 py-4 rounded-xl;
+    @apply mx-auto justify-center bg-blue-50 px-4 py-4 rounded-xl whitespace-nowrap;
 }
 
 .add-person, .edit-address, .edit-note {
@@ -104,4 +104,8 @@ label {
 
 .button-small-green {
     @apply bg-white hover:bg-green-500 text-black text-sm hover:text-white px-1 border border-gray-500 hover:border-black rounded;
+}
+
+.button-small-blue {
+    @apply bg-white hover:bg-blue-500 text-black text-sm hover:text-white px-1 border border-gray-500 hover:border-black rounded;
 }

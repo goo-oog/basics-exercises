@@ -69,8 +69,8 @@ class AppController
         $this->personsService->loginVerify();
     }
 
-    public function dashboard(): string
+    public function authorizationSuccessful(): string
     {
-        return $this->personsService->dashboard();
+        return $this->personsService->authorizationSuccessful();
     }
 }
