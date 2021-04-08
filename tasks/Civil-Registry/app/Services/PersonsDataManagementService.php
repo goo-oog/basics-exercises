@@ -4,23 +4,26 @@ declare(strict_types=1);
 namespace Registry\App\Services;
 
 use Registry\App\Models\Person;
+use Registry\App\Repositories\TokensRepository;
 
 class PersonsDataManagementService
 {
-    private RepositoryService $db;
-    private ValidationService $validate;
+    private PersonsRepositoryService $personsDB;
+    private PersonsDataValidationService $validate;
+    private TokensRepository $tokensDB;
     private TwigService $twig;
     private array $twigVariables = [];
 
-    public function __construct(RepositoryService $repositoryService)
+    public function __construct(PersonsRepositoryService $personsRepositoryService, TokensRepository $tokensRepository)
     {
-        $this->db = $repositoryService;
-        $this->validate = new ValidationService();
+        $this->personsDB = $personsRepositoryService;
+        $this->tokensDB = $tokensRepository;
+        $this->validate = new PersonsDataValidationService();
         $this->twig = new TwigService();
         $this->twigVariables['GET'] = $_GET;
         $this->twigVariables['POST'] = $_POST;
         $this->twigVariables['SESSION'] = $_SESSION;
-        $this->twigVariables['db'] = $this->db;
+        $this->twigVariables['db'] = $this->personsDB;
     }
 
     public function showMainPage(): string
@@ -30,13 +33,13 @@ class PersonsDataManagementService
             $query = '%' . $_GET['query'] . '%';
             switch ($_GET['search']) {
                 case 'code':
-                    $searchResult = $this->db->getByCode($query);
+                    $searchResult = $this->personsDB->getByCode($query);
                     break;
                 case 'name':
-                    $searchResult = $this->db->getByName($query);
+                    $searchResult = $this->personsDB->getByName($query);
                     break;
                 case 'surname':
-                    $searchResult = $this->db->getBySurname($query);
+                    $searchResult = $this->personsDB->getBySurname($query);
                     break;
                 case 'gender':
                     if ($query === 'vīrietis' || $query === 'v' || $query === 'm') {
@@ -44,19 +47,19 @@ class PersonsDataManagementService
                     } elseif ($query === 'sieviete' || $query === 's' || $query === 'f') {
                         $query = 'F';
                     }
-                    $searchResult = $this->db->getByGender($query);
+                    $searchResult = $this->personsDB->getByGender($query);
                     break;
                 case 'year':
-                    $searchResult = $this->db->getByYear($query);
+                    $searchResult = $this->personsDB->getByYear($query);
                     break;
                 case 'address':
-                    $searchResult = $this->db->getByAddress(($query));
+                    $searchResult = $this->personsDB->getByAddress(($query));
                     break;
                 case 'note':
-                    $searchResult = $this->db->getByNote(($query));
+                    $searchResult = $this->personsDB->getByNote(($query));
             }
         } else {
-            $searchResult = $this->db->getAll();
+            $searchResult = $this->personsDB->getAll();
         }
         $this->twigVariables['persons'] = $searchResult;
         return $this->twig->environment()->render('_main-page.twig', $this->twigVariables);
@@ -68,12 +71,14 @@ class PersonsDataManagementService
             return $this->twig->environment()->render('_edit-address.twig', $this->twigVariables);
         }
         header('Location:/login');
+        exit();
     }
 
     public function editAddress(): void
     {
-        $this->db->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], trim($_POST['address']), $_POST['note']));
+        $this->personsDB->editAddress(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], trim($_POST['address']), $_POST['note']));
         header('Location:/');
+        exit();
     }
 
     public function showEditNoteForm(): string
@@ -82,23 +87,25 @@ class PersonsDataManagementService
             return $this->twig->environment()->render('_edit-note.twig', $this->twigVariables);
         }
         header('Location:/login');
+        exit();
     }
 
     public function editNote(): void
     {
-        $this->db->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], trim($_POST['note'])));
+        $this->personsDB->editNote(new Person($_POST['code'], $_POST['name'], $_POST['surname'], $_POST['gender'], $_POST['year'], $_POST['address'], trim($_POST['note'])));
         header('Location:/');
     }
 
     public function deletePerson(): void
     {
         if ($this->checkAuth()) {
-            if ($this->validate->code($_POST['code']) && $this->db->getByCode($_POST['code'])) {
-                $this->db->deletePerson($this->db->getByCode($_POST['code'])[0]);
+            if ($this->validate->code($_POST['code']) && $this->personsDB->getByCode($_POST['code'])) {
+                $this->personsDB->deletePerson($this->personsDB->getByCode($_POST['code'])[0]);
             }
             header('Location:/');
+        } else {
+            header('Location:/login');
         }
-        header('Location:/login');
     }
 
     public function showAddPersonForm(): string
@@ -111,13 +118,13 @@ class PersonsDataManagementService
 
     public function addPerson(): void
     {
-        if (!$this->db->getByCode($_POST['code'])) {
+        if (!$this->personsDB->getByCode($_POST['code'])) {
             if ($this->validate->code($_POST['code'])) {
                 if ($this->validate->name($_POST['name'])) {
                     if ($this->validate->surname($_POST['surname'])) {
                         if ($this->validate->gender($_POST['gender'])) {
                             $code = str_replace('-', '', $_POST['code']);
-                            $this->db->addPerson(new Person(
+                            $this->personsDB->addPerson(new Person(
                                 $code,
                                 mb_convert_case($_POST['name'], MB_CASE_TITLE),
                                 mb_convert_case($_POST['surname'], MB_CASE_TITLE),
@@ -161,10 +168,10 @@ class PersonsDataManagementService
     public function checkAuth(): bool
     {
         if (isset($_SESSION['auth_id'])) {
-            if ($this->db->searchByToken($_SESSION['auth_id'])) {
+            if ($this->tokensDB->searchByToken($_SESSION['auth_id'])) {
                 return true;
             }
-            $this->db->invalidateToken($_SESSION['auth_id']);
+            $this->tokensDB->invalidateToken($_SESSION['auth_id']);
         }
         unset($_SESSION['auth_id']);
         $this->twigVariables['SESSION'] = $_SESSION;
@@ -178,7 +185,7 @@ class PersonsDataManagementService
 
     public function logout(): void
     {
-        $this->db->invalidateToken($_SESSION['auth_id']);
+        $this->tokensDB->invalidateToken($_SESSION['auth_id']);
         unset($_SESSION['auth_id']);
         header('Location:/');
     }
@@ -186,9 +193,9 @@ class PersonsDataManagementService
     public function loginVerify(): void
     {
         $code = str_replace('-', '', $_POST['code']);
-        if ($this->db->getByCode($code)) {
+        if ($this->personsDB->getByCode($code)) {
             $token = password_hash($code, PASSWORD_BCRYPT);
-            $this->db->addToken($code, $token);
+            $this->tokensDB->addToken($code, $token);
             $_SESSION['auth_id'] = $token;
             header('Location:/dashboard');
         } else {
@@ -199,9 +206,9 @@ class PersonsDataManagementService
     public function dashboard(): string
     {
         $this->twigVariables['message'] =
-            $this->db->getByCode($this->db->searchByToken($_SESSION['auth_id']))[0]->name()
+            $this->personsDB->getByCode($this->tokensDB->searchByToken($_SESSION['auth_id']))[0]->name()
             . ' '
-            . $this->db->getByCode($this->db->searchByToken($_SESSION['auth_id']))[0]->surname();
+            . $this->personsDB->getByCode($this->tokensDB->searchByToken($_SESSION['auth_id']))[0]->surname();
         return $this->twig->environment()->render('_dashboard.twig', $this->twigVariables);
     }
 }

@@ -22,10 +22,4 @@ interface PersonsRepository
     public function editNote(Person $person): void;
 
     public function editAddress(Person $person): void;
-
-    public function addToken(string $code, string $token): void;
-
-    public function searchByToken($token): ?string;
-
-    public function invalidateToken($token): void;
 }

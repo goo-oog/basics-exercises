@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Registry\App\Services;
 
-class ValidationService
+class PersonsDataValidationService
 {
     public function code(string $code): int
     {

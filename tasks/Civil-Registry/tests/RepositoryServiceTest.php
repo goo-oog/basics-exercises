@@ -5,7 +5,7 @@ namespace Registry\Tests;
 
 use Registry\App\Models\Person;
 use Registry\App\Repositories\MySQLPersonsRepository;
-use Registry\App\Services\RepositoryService;
+use Registry\App\Services\PersonsRepositoryService;
 use PHPUnit\Framework\TestCase;
 
 class RepositoryServiceTest extends TestCase
@@ -14,7 +14,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testAddPerson_getByCode_deletePerson(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertInstanceOf(Person::class, $db->getByCode('12345612345')[0]);
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -22,7 +22,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testGetAll(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertIsArray($db->getAll());
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -30,7 +30,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testGetBySurname(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertEquals('Bērziņš', $db->getBySurname('Bērziņš')[0]->surname());
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -38,7 +38,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testGetByName(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertEquals('Jānis', $db->getByName('Jānis')[0]->name());
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -46,7 +46,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testGetByGender(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertEquals('M', $db->getByName('Jānis')[0]->gender());
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -54,7 +54,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testGetByYear(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         self::assertEquals('1956', $db->getByYear('1956')[0]->year());
         $db->deletePerson($db->getByCode('12345612345')[0]);
@@ -62,7 +62,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testEditNote(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         $db->editNote(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956', '', 'Test'));
         self::assertEquals('Test', $db->getByCode('12345612345')[0]->note());
@@ -71,7 +71,7 @@ class RepositoryServiceTest extends TestCase
 
     public function testEditAddress(): void
     {
-        $db = new RepositoryService(new $this->repository());
+        $db = new PersonsRepositoryService(new $this->repository());
         $db->addPerson(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956'));
         $db->editAddress(new Person('12345612345', 'Jānis', 'Bērziņš', 'M', '1956', 'Rīga'));
         self::assertEquals('Rīga', $db->getByCode('12345612345')[0]->address());

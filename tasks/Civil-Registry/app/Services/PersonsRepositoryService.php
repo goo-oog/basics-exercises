@@ -6,7 +6,7 @@ namespace Registry\App\Services;
 use Registry\App\Models\Person;
 use Registry\App\Repositories\PersonsRepository;
 
-class RepositoryService
+class PersonsRepositoryService
 {
     private PersonsRepository $db;
 
@@ -105,20 +105,5 @@ class RepositoryService
     public function editAddress(Person $person): void
     {
         $this->db->editAddress($person);
-    }
-
-    public function addToken(string $code, string $token): void
-    {
-        $this->db->addToken($code, $token);
-    }
-
-    public function searchByToken($token): ?string
-    {
-        return $this->db->searchByToken($token);
-    }
-
-    public function invalidateToken($token): void
-    {
-        $this->db->invalidateToken($token);
     }
 }
