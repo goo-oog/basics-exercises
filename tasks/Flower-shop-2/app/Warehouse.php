@@ -8,4 +8,5 @@ interface Warehouse
     /**@return Flower[] */
     public function inventory(): array;
 
+    public function addFlowers(array $flowers): void;
 }

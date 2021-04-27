@@ -25,4 +25,11 @@ class Warehouse4_CSV implements Warehouse
     {
         return $this->inventory;
     }
+
+    public function addFlowers(array $flowers): void
+    {
+        foreach ($flowers as $name => $amount) {
+            $this->inventory[] = new Flower($name, $amount);
+        }
+    }
 }

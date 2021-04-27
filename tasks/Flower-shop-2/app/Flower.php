@@ -40,9 +40,4 @@ class Flower
     {
         $this->amount += $amount;
     }
-
-    public function subtractFromAmount(int $amount): void
-    {
-        $this->amount -= $amount;
-    }
 }
